@@ -27,7 +27,7 @@ from re import compile as re_compile
 from common import ProtocolError
 from filelock import file_lock
 from message import Messager
-
+from session import get_session
 
 ### Constants
 # The only suffix we allow to write to, which is the joined annotation file
@@ -295,7 +295,8 @@ class Annotations(object):
         if not input_files:
             # Our first attempts at finding the input by checking suffixes
             # failed, so we try to attach know suffixes to the path.
-            sugg_path = document + '.' + JOINED_ANN_FILE_SUFF
+            sugg_path = document + '.' + self.user + '.' + JOINED_ANN_FILE_SUFF
+
             if isfile(sugg_path):
                 # We found a joined file by adding the joined suffix
                 input_files = [sugg_path]
@@ -334,6 +335,11 @@ class Annotations(object):
         from os.path import basename, getmtime, getctime
         #from fileinput import FileInput, hook_encoded
 
+        try:
+             self.user = get_session()['user']
+        except KeyError:
+             self.user = 'anonymous'
+
         # we should remember this
         self._document = document
 
@@ -358,7 +364,7 @@ class Annotations(object):
         input_files = self._select_input_files(document)
 
         if not input_files:
-            with open('{}.{}'.format(document, JOINED_ANN_FILE_SUFF), 'w'):
+            with open('{}.{}.{}'.format(document, self.user, JOINED_ANN_FILE_SUFF), 'w'):
                 pass
 
             input_files = self._select_input_files(document)
