@@ -15,7 +15,7 @@ from os.path import join as path_join
 from annotator import create_arc, delete_arc, reverse_arc
 from annotator import create_span, delete_span
 from annotator import split_span
-from auth import login, logout, whoami, NotAuthorisedError
+from auth import login, logout, whoami, NotAuthorisedError, signup
 from common import ProtocolError
 from config import DATA_DIR
 from convert.convert import convert
@@ -37,6 +37,7 @@ from undo import undo
 from tag import tag
 from delete import delete_document, delete_collection
 from norm import norm_get_name, norm_search, norm_get_data
+from sys import stderr
 
 # no-op function that can be invoked by client to log a user action
 def logging_no_op(collection, document, log):
@@ -59,6 +60,7 @@ DISPATCHER = {
         'login': login,
         'logout': logout,
         'whoami': whoami,
+	'signup': signup,
 
         'createSpan': create_span,
         'deleteSpan': delete_span,
@@ -312,7 +314,7 @@ def dispatch(http_args, client_ip, client_hostname):
         log_annotation(http_args['collection'],
                         http_args['document'],
                        'FINISH', action, action_args)
-
+    
     # Assign which action that was performed to the json_dic
     json_dic['action'] = action
     # Return the protocol version for symmetry

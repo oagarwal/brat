@@ -1986,6 +1986,29 @@ var VisualizerUI = (function($, window, undefined) {
       });
       authForm.submit(authFormSubmit);
 
+      var signupForm = $('#signup_form');
+      initForm(signupForm, { resizable: false });
+      var signupFormSubmit = function(evt) {
+        dispatcher.post('hideForm');
+        var _user = $('#signup_user').val();
+        var password = $('#signup_pass').val();
+        dispatcher.post('ajax', [{
+            action: 'signup',
+            user: _user,
+            password: password,
+          },
+          function(response) {
+              if (response.exception) {
+                dispatcher.post('showForm', [signupForm]);
+                $('#signup_user').select().focus();
+              }
+          }]);
+        return false;
+      };
+      $('#signup_button').click(function(evt) {
+         dispatcher.post('showForm', [signupForm]);
+      });
+      signupForm.submit(signupFormSubmit);
 
       var tutorialForm = $('#tutorial');
       var isWebkit = 'WebkitAppearance' in document.documentElement.style;

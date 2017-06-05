@@ -12,6 +12,8 @@ Version:    2011-04-21
 
 from hashlib import sha512
 from os.path import dirname, join as path_join, isdir
+import mysql.connector
+from sys import stderr
 
 try:
     from os.path import relpath
@@ -66,10 +68,20 @@ class InvalidAuthError(ProtocolError):
 
 
 def _is_authenticated(user, password):
-    # TODO: Replace with a database back-end
-    return (user in USER_PASSWORD and
-            password == USER_PASSWORD[user])
-            #password == _password_hash(USER_PASSWORD[user]))
+
+    if not user or not password:
+        return False
+
+    cnx = mysql.connector.connect(user='root', password='oshin',host='127.0.0.1',database='medline');
+    cursor = cnx.cursor()
+    query = "select password from users where username='%s'" % user;
+    cursor.execute(query)
+    correct_password = ""
+    for val in cursor:
+       correct_password = val[0]
+    cursor.close()
+    cnx.close()
+    return password==correct_password
 
 def _password_hash(password):
     return sha512(password).hexdigest()
@@ -123,5 +135,33 @@ def allowed_to_read(real_path):
     #display_message('Path: %s, dir: %s, user: %s, ' % (data_path, real_dir, user), type='error', duration=-1)
 
     return robotparser.can_fetch(user, data_path)
+
+def signup(user, password):
+
+    if not user or not password:
+        Messager.info('Username or password not provided!')
+        return {}
+
+    cnx = mysql.connector.connect(user='root', password='oshin',host='127.0.0.1',database='medline');
+    cursor = cnx.cursor()
+    query = "select username from users where username='%s'" % user;
+    cursor.execute(query)
+    numrows = 0 
+    for val in cursor:
+       numrows += 1
+
+    if numrows>0: 
+       cursor.close()
+       cnx.close()
+       Messager.info('User already exists!')
+       return {}
+
+    query = "insert into users(username,password) values('%s','%s')" % (user,password);
+    cursor.execute(query)
+    cursor.close()
+    cnx.commit()
+    cnx.close()
+    Messager.info('Signed up! Hello!')
+    return {}
 
 # TODO: Unittesting
