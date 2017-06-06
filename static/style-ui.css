@@ -518,7 +518,19 @@ div.scroll_wrapper_upper div.scroller {
   font-family: 'PT Sans Caption', sans-serif !important;
 }
 
-
+#medline_search_term {
+  border: 1px solid #a6c9e2;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  width: 80%;
+  height: 30px;
+  margin: 15px;
+}
+#medline_search-ok{
+  width: 15%;
+}
 @font-face {
   font-family: 'Astloch';
   font-style: normal;

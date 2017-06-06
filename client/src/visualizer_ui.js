@@ -619,7 +619,7 @@ var VisualizerUI = (function($, window, undefined) {
         } else {
           form.dialog('open');
         }
-        slideToggle($('#pulldown').stop(), false);
+        //slideToggle($('#pulldown').stop(), false);
         return form;
       };
 
@@ -684,7 +684,7 @@ var VisualizerUI = (function($, window, undefined) {
               }
               showNoDocMessage();
             } else if (!fileBrowserClosedWithSubmit && !searchActive) {
-              dispatcher.post('setArguments', [{}, true]);
+              //dispatcher.post('setArguments', [{}, true]);
             }
           },
           width: 500
@@ -771,7 +771,6 @@ var VisualizerUI = (function($, window, undefined) {
           submit(fileBrowserSubmit).
           bind('reset', hideForm);
 
-      var fileBrowserWaiting = false;
       var showFileBrowser = function() {
         // keep tabs on how the browser is closed; we need to keep the
         // "blind" up when retrieving a collection, but not when canceling
@@ -780,12 +779,6 @@ var VisualizerUI = (function($, window, undefined) {
 
         // no point in showing this while the browser is shown
         hideNoDocMessage();
-
-        if (currentForm == tutorialForm) {
-          fileBrowserWaiting = true;
-          return;
-        }
-        fileBrowserWaiting = false;
 
         // hide "no document" message when file browser shown
         // TODO: can't make this work; I can't detect when it gets hidden.
@@ -1507,10 +1500,7 @@ var VisualizerUI = (function($, window, undefined) {
           return;
         }
 
-        if (code === $.ui.keyCode.TAB) {
-          showFileBrowser();
-          return false;
-        } else if (code == $.ui.keyCode.LEFT) {
+        if (code == $.ui.keyCode.LEFT) {
           return moveInFileBrowser(-1);
         } else if (code === $.ui.keyCode.RIGHT) {
           return moveInFileBrowser(+1);
@@ -1835,7 +1825,7 @@ var VisualizerUI = (function($, window, undefined) {
             slideToggle($('#pulldown').stop(), false);
           }, 500);
         });
-
+      	
       $('#label_abbreviations input').click(function(evt) {
         var val = this.value;
         val = val === 'on';
@@ -1966,6 +1956,9 @@ var VisualizerUI = (function($, window, undefined) {
                 $('#auth_pass').val('');
                 $('.login').show();
                 dispatcher.post('user', [user]);
+		$('#homepage_no_auth_msg').hide();
+		$('#search_medline_form').show();
+		slideToggle($('#pulldown').stop(), true);
               }
           }]);
         return false;
@@ -1979,6 +1972,7 @@ var VisualizerUI = (function($, window, undefined) {
             $('#auth_button').val('Login');
             $('.login').hide();
             dispatcher.post('user', [null]);
+            window.location = "/";
           }]);
         } else {
           dispatcher.post('showForm', [authForm]);
@@ -2010,28 +2004,9 @@ var VisualizerUI = (function($, window, undefined) {
       });
       signupForm.submit(signupFormSubmit);
 
-      var tutorialForm = $('#tutorial');
-      var isWebkit = 'WebkitAppearance' in document.documentElement.style;
-      if (!isWebkit) {
-        // Inject the browser warning
-        $('#browserwarning').css('display', 'block');
+      var searchMedlineFormSubmit = function(evt) {
+      	$('#homepage_no_auth_msg').show();
       }
-      initForm(tutorialForm, {
-        width: 800,
-        height: 600,
-        no_cancel: true,
-        no_ok: true,
-        buttons: [{
-          id: "tutorial-ok",
-          text: "OK",
-          click: function() { tutorialForm.dialog('close'); }
-        }],
-        close: function() {
-          if (fileBrowserWaiting) {
-            showFileBrowser();
-          }
-        }
-      });
 
       var init = function() {
         dispatcher.post('initForm', [viewspanForm, {
@@ -2053,11 +2028,6 @@ var VisualizerUI = (function($, window, undefined) {
               auth_button.val('Login');
               dispatcher.post('user', [null]);
               $('.login').hide();
-              // don't show tutorial if there's a specific document (annoyance)
-              if (!doc) {
-                dispatcher.post('showForm', [tutorialForm]);
-                $('#tutorial-ok').focus();
-              }
             }
           },
           { keep: true }
@@ -2094,6 +2064,7 @@ var VisualizerUI = (function($, window, undefined) {
           }
           dispatcher.post('configurationUpdated');
         }]);
+        slideToggle($('#pulldown').stop(), true);
       };
 
       var noFileSpecified = function() {
