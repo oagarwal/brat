@@ -1972,7 +1972,7 @@ var VisualizerUI = (function($, window, undefined) {
             $('#auth_button').val('Login');
             $('.login').hide();
             dispatcher.post('user', [null]);
-            window.location = "/";
+            //window.location = "/";
           }]);
         } else {
           dispatcher.post('showForm', [authForm]);
@@ -2004,9 +2004,27 @@ var VisualizerUI = (function($, window, undefined) {
       });
       signupForm.submit(signupFormSubmit);
 
+      var searchMedlineForm = $('#search_medline_form');
+      searchMedlineForm.append('<input id="medline_search-ok" type="submit" value="Search"/>');
       var searchMedlineFormSubmit = function(evt) {
-      	$('#homepage_no_auth_msg').show();
+        dispatcher.post('hideForm');
+	dispatcher.post('ajax', [{
+		action: 'medlineSearch',
+		query: $('#medline_search_term').val(),
+	},
+	function(response) {
+		$('#results').remove();
+		$('#no_svg_wrapper').remove();
+		var text = "<div id=\"results\">";
+		var i;
+		for(i=0;i<response.names.length;i++){
+			text += "<br/><br/>"+"<a href=\"#/medline/"+response.pmids[i]+"\">"+response.names[i]+"</a> " + +response.years[i];
+		}
+	text += "</div>";
+	$("body").append(text);
+	}]);
       }
+      searchMedlineForm.submit(searchMedlineFormSubmit);
 
       var init = function() {
         dispatcher.post('initForm', [viewspanForm, {

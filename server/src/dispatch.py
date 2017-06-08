@@ -38,6 +38,7 @@ from tag import tag
 from delete import delete_document, delete_collection
 from norm import norm_get_name, norm_search, norm_get_data
 from sys import stderr
+from medlineSearch import search_articles,clear_articles
 
 # no-op function that can be invoked by client to log a user action
 def logging_no_op(collection, document, log):
@@ -104,6 +105,7 @@ DISPATCHER = {
         # Visualisation support
         'getConfiguration': get_configuration,
         'convert': convert,
+	'medlineSearch': search_articles,
        }
 
 # Actions that correspond to annotation functionality
@@ -225,7 +227,7 @@ def _directory_is_safe(dir_path):
 
 def dispatch(http_args, client_ip, client_hostname):
     action = http_args['action']
-
+    
     log_info('dispatcher handling action: %s' % (action, ));
 
     # Verify that we don't have a protocol version mismatch
@@ -308,7 +310,7 @@ def dispatch(http_args, client_ip, client_hostname):
     # TODO: log_annotation for exceptions?
 
     json_dic = action_function(*action_args)
-
+    
     # Log annotation actions separately (if so configured)
     if action in LOGGED_ANNOTATOR_ACTION:
         log_annotation(http_args['collection'],
