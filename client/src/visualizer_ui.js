@@ -634,7 +634,7 @@ var VisualizerUI = (function($, window, undefined) {
 
 
       /* START collection browser - related */
-
+	
       var selectElementInTable = function(table, docname, mf) {
         table = $(table);
         table.find('tr').removeClass('selected');
@@ -2088,25 +2088,25 @@ var VisualizerUI = (function($, window, undefined) {
       var noFileSpecified = function() {
         // not (only) an error, so no messaging
         dispatcher.post('clearSVG');
-        showFileBrowser();
+	$('#waiter').dialog('close');
       }
 
       var showUnableToReadTextFile = function() {
         dispatcher.post('messages', [[['Unable to read the text file.', 'error']]]);
         dispatcher.post('clearSVG');
-        showFileBrowser();
+        $('#waiter').dialog('close');
       };
 
       var showAnnotationFileNotFound = function() {
         dispatcher.post('messages', [[['Annotation file not found.', 'error']]]);
         dispatcher.post('clearSVG');
-        showFileBrowser();
+        $('#waiter').dialog('close');
       };
 
       var showUnknownError = function(exception) {
         dispatcher.post('messages', [[['Unknown error: ' + exception, 'error']]]);
         dispatcher.post('clearSVG');
-        showFileBrowser();
+        $('#waiter').dialog('close');
       };
 
       var reloadDirectoryWithSlash = function(sourceData) {
