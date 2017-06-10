@@ -1972,7 +1972,7 @@ var VisualizerUI = (function($, window, undefined) {
             $('#auth_button').val('Login');
             $('.login').hide();
             dispatcher.post('user', [null]);
-            //window.location = "/";
+            window.location = "/";
           }]);
         } else {
           dispatcher.post('showForm', [authForm]);
@@ -2018,10 +2018,29 @@ var VisualizerUI = (function($, window, undefined) {
 		var text = "<div id=\"results\">";
 		var i;
 		for(i=0;i<response.names.length;i++){
-			text += "<br/><br/>"+"<a href=\"#/medline/"+response.pmids[i]+"\">"+response.names[i]+"</a> " + +response.years[i];
+			text += "<br/><br/>"+"<a class=\"medlineabstract\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a>";
 		}
 	text += "</div>";
 	$("body").append(text);
+      	$('.medlineabstract').click(function(envt) {
+		envt.preventDefault();
+		dispatcher.post('ajax', [{
+        		action: 'getDocument',
+            		collection: '/medline/',
+            		'document': this.id,
+		},
+		function(response) {
+			response.text = response.text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g,"&apos;").replace(/"/g,"&quot;");
+			$("#dialog-message").remove();
+			text = "<div id=\"dialog-message\"><p>" +response.text+"</p></div>";
+			$("body").append(text);
+			$("#dialog-message" ).dialog({
+      				modal: true,
+				width: 800,
+        			height: 600,
+    			});
+          	}]);
+      	});
 	}]);
       }
       searchMedlineForm.submit(searchMedlineFormSubmit);
@@ -2041,10 +2060,14 @@ var VisualizerUI = (function($, window, undefined) {
               auth_button.val('Logout ' + user);
               dispatcher.post('user', [user]);
               $('.login').show();
+              $('#search_medline_form').show();
+              $('#homepage_no_auth_msg').hide();
             } else {
               user = null;
               auth_button.val('Login');
               dispatcher.post('user', [null]);
+              $('#search_medline_form').hide();
+              $('#homepage_no_auth_msg').show();
               $('.login').hide();
             }
           },
