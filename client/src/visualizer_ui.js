@@ -619,7 +619,6 @@ var VisualizerUI = (function($, window, undefined) {
         } else {
           form.dialog('open');
         }
-        //slideToggle($('#pulldown').stop(), false);
         return form;
       };
 
@@ -1814,17 +1813,6 @@ var VisualizerUI = (function($, window, undefined) {
       }
 
       var menuTimer = null;
-      $('#header').
-        mouseenter(function(evt) {
-          clearTimeout(menuTimer);
-          slideToggle($('#pulldown').stop(), true);
-        }).
-        mouseleave(function(evt) {
-          clearTimeout(menuTimer);
-          menuTimer = setTimeout(function() {
-            slideToggle($('#pulldown').stop(), false);
-          }, 500);
-        });
       	
       $('#label_abbreviations input').click(function(evt) {
         var val = this.value;
@@ -1935,7 +1923,10 @@ var VisualizerUI = (function($, window, undefined) {
       });
 
       var authForm = $('#auth_form');
-      initForm(authForm, { resizable: false });
+      initForm(authForm, { 
+	height: 250,
+	width: 400,	
+	resizable: false });
       var authFormSubmit = function(evt) {
         dispatcher.post('hideForm');
         var _user = $('#auth_user').val();
@@ -1958,7 +1949,6 @@ var VisualizerUI = (function($, window, undefined) {
                 dispatcher.post('user', [user]);
 		$('#homepage_no_auth_msg').hide();
 		$('#search_medline_form').show();
-		slideToggle($('#pulldown').stop(), true);
               }
           }]);
         return false;
@@ -1981,7 +1971,10 @@ var VisualizerUI = (function($, window, undefined) {
       authForm.submit(authFormSubmit);
 
       var signupForm = $('#signup_form');
-      initForm(signupForm, { resizable: false });
+      initForm(signupForm, {
+        height: 250,
+        width: 400,
+	resizable: false });
       var signupFormSubmit = function(evt) {
         dispatcher.post('hideForm');
         var _user = $('#signup_user').val();
@@ -2105,7 +2098,6 @@ var VisualizerUI = (function($, window, undefined) {
           }
           dispatcher.post('configurationUpdated');
         }]);
-        slideToggle($('#pulldown').stop(), true);
       };
 
       var noFileSpecified = function() {

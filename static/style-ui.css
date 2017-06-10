@@ -30,6 +30,7 @@ body .ui-widget {
   font-size: 120%;
   overflow: hidden;
   white-space: nowrap;
+  background-color: #9C42AD;
 }
 
 #pulldown {
@@ -42,13 +43,18 @@ body .ui-widget {
 #pulldown div + div {
   margin-top: 10px;
 }
-#auth_button {
-  float: right;
+#auth_button, #signup_button {
+    background-color: #3734B4;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 8px;
+    border: none;
+    cursor: pointer;
+    float: right;
 }
-#signup_button {
-  float: right;
+#auth_button:hover, #signup_button:hover, #home_link:hover {
+    background-color: #4744B6;
 }
-
 #pulluptrigger {
   height: 35px;
   width:  35px;
@@ -83,23 +89,23 @@ body .ui-widget {
 }
 
 .messages > div.error {
-  background-color: #FF9696;
+  background-color: #f44336;
   font-weight: bold;
   color: #000000;
 }
 .messages > div.warning {
-  background-color: #FFE2A3;
+  background-color: #f44336;
   font-weight: bold;
   color: #000000;
 }
 .messages > div.comment {
-  background-color: #87b6d9;
+  background-color: #9C42AD;
   color: #ffffff;
   font-weight: bold;
   border: 1px outset #27628F;
 }
 .messages > div.debug {
-  background-color: #ffff99;
+  background-color: #9C42AD;
   color: #000000;
 }
 
@@ -281,11 +287,15 @@ div.scroll_wrapper_upper div.scroller {
   padding: 0 5px;
   float: left;
 }
-#help_link {
-  padding-right: 0.5em;
-  color: darkgray;
-  vertical-align: center;
-  float: right;
+#home_link {
+    background-color: #3734B4;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    float: left;
 }
 .document_edit_time {
   font-family: monospace;
@@ -303,15 +313,6 @@ div.scroll_wrapper_upper div.scroller {
   width: 100%;
   border: none;
 }
-
-/*
-#logo {
-  float:right;
-  margin-left: 20px;
-  background-color: #ffffff;
-  padding: 0 0 0 2px;
-}
-*/
 
 .logo {
   font-family: 'Astloch', serif;
@@ -530,6 +531,31 @@ div.scroll_wrapper_upper div.scroller {
 }
 #medline_search-ok{
   width: 15%;
+}
+#results button {
+    background-color: #9C42AD;
+    color: white;
+    padding: 8px 8px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#results button:hover {
+    background-color: #A54BB6;
+}
+#results a {
+    color: #002D64;
+    text-decoration: none;
+    font-size: 15px;   
+}
+#results a:hover {
+    text-decoration: underline;
+}
+#no_document_message {
+    background-color: #f9f9f9;
+    color: #002D64;
+    text-align: center; 
 }
 @font-face {
   font-family: 'Astloch';

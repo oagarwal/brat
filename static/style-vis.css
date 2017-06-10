@@ -30,12 +30,12 @@ text {
 }
 .center_wrapper > div > div {
   /* match jQuery UI .ui-widget-content color */
-  color: #2e6e9e;
   margin-left: auto;
   margin-right: auto;
   width: 70%;
   height: 40%;
-  font-size: 15px;
+  font-size: 16px;
+  color: #002D64;
   font-family: 'Liberation Sans', Verdana, Arial, Helvetica, sans-serif;
 }
 .center_wrapper > div > div h1 {
@@ -335,11 +335,11 @@ rect.shadow_EditHighlight {
 }
 fieldset {
   /* match relevant parts of jQuery UI .ui-widget-content */
-  border: 1px solid #a6c9e2;
+  border: 1px solid #3734B4;
   /* round corners, same as jQuery UI .ui-corner-all */
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   /* to prevent border from running into legend */
   margin-top: 5px;
 }
@@ -348,8 +348,8 @@ fieldset legend {
   font-size: 90%;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  border-radius: 3px;
-  background-color: #70a8d2;
+  /*border-radius: 3px;*/
+  background-color: #9C42AD;
   color: white;
   padding-left: 0.5em;
   padding-right: 0.5em;
