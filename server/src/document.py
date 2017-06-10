@@ -864,7 +864,9 @@ def get_document(collection, document):
     directory = collection
     real_dir = real_directory(directory)
     doc_path = path_join(real_dir, document)
-    return _document_json_dict(doc_path)
+    j_dic = _document_json_dict(doc_path)
+    j_dic['docname'] = document
+    return j_dic
 
 def get_document_timestamp(collection, document):
     directory = collection

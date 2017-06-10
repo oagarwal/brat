@@ -3063,6 +3063,7 @@ Util.profileReport();
       };
 
       var renderDocument = function() {
+	$('#results').remove();
         Util.profileStart('invoke getDocument');
         dispatcher.post('ajax', [{
             action: 'getDocument',
