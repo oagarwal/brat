@@ -2008,7 +2008,7 @@ var VisualizerUI = (function($, window, undefined) {
 		$('#waiter').dialog('close');
 		$('#results').remove();
 		$('#no_svg_wrapper').remove();
-		var text = "<div id=\"results\">";
+		var text = "<div id=\"results\" style=\"margin-top: 60px;\">";
 		var i;
 		for(i=0;i<response.names.length;i++){
 			text += "<br/><br/>"+"<a class=\"medlineabstract\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a><a href=\"#/medline/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";

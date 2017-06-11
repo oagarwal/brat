@@ -55,6 +55,15 @@ body .ui-widget {
 #auth_button:hover, #signup_button:hover, #home_link:hover {
     background-color: #4744B6;
 }
+#dialog-message button{
+    background-color: #9C42AD;
+    color: white;
+    cursor: pointer;
+    float: right;
+    margin: 8px 8px;
+    border: none;
+    padding: 5px 5px;
+}
 #pulluptrigger {
   height: 35px;
   width:  35px;
@@ -520,23 +529,28 @@ div.scroll_wrapper_upper div.scroller {
 }
 
 #medline_search_term {
-  border: 1px solid #a6c9e2;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+  border: 1px solid #3734B4;
+  border-radius: 2px;
   font-size: 15px;
   width: 80%;
-  height: 30px;
-  margin: 15px;
+  height: 35px;
+  margin: 8px;
+  padding: 5px 5px;
+  font-size: 16px;
 }
 #medline_search-ok{
-  width: 15%;
+    background-color: #3734B4;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 8px;
+    border: none;
+    cursor: pointer;
+    width: 15%;
 }
 #results button {
     background-color: #9C42AD;
     color: white;
     padding: 8px 8px;
-    margin: 5px 0;
     border: none;
     border-radius: 50%;
     cursor: pointer;

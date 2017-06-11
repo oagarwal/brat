@@ -1389,11 +1389,11 @@ var Visualizer = (function($, window, undefined) {
 Util.profileEnd('before render');
 Util.profileStart('render');
 Util.profileStart('init');
-
         if (!sourceData && !data) {
           dispatcher.post('doneRendering', [coll, doc, args]);
           return;
         }
+
         $svgDiv.show();
         if ((sourceData && sourceData.collection && (sourceData.document !== doc || sourceData.collection !== coll)) || drawing) {
           redraw = true;
