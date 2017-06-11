@@ -1945,10 +1945,10 @@ var VisualizerUI = (function($, window, undefined) {
                 $('#auth_button').val('Logout ' + user);
                 $('#auth_user').val('');
                 $('#auth_pass').val('');
-                $('.login').show();
                 dispatcher.post('user', [user]);
 		$('#homepage_no_auth_msg').hide();
 		$('#search_medline_form').show();
+		$('#signup_button').hide();
               }
           }]);
         return false;
@@ -1959,8 +1959,6 @@ var VisualizerUI = (function($, window, undefined) {
             action: 'logout'
           }, function(response) {
             user = null;
-            $('#auth_button').val('Login');
-            $('.login').hide();
             dispatcher.post('user', [null]);
             window.location = "/";
           }]);
@@ -2000,12 +1998,14 @@ var VisualizerUI = (function($, window, undefined) {
       var searchMedlineForm = $('#search_medline_form');
       searchMedlineForm.append('<input id="medline_search-ok" type="submit" value="Search"/>');
       var searchMedlineFormSubmit = function(evt) {
-        dispatcher.post('hideForm');
+	evt.preventDefault();
+	$('#waiter').dialog('open');
 	dispatcher.post('ajax', [{
 		action: 'medlineSearch',
 		query: $('#medline_search_term').val(),
 	},
 	function(response) {
+		$('#waiter').dialog('close');
 		$('#results').remove();
 		$('#no_svg_wrapper').remove();
 		var text = "<div id=\"results\">";
@@ -2034,7 +2034,7 @@ var VisualizerUI = (function($, window, undefined) {
     			});
           	}]);
       	});
-	}]);
+	}])
       }
       searchMedlineForm.submit(searchMedlineFormSubmit);
 
@@ -2052,16 +2052,15 @@ var VisualizerUI = (function($, window, undefined) {
               dispatcher.post('messages', [[['Welcome back, user "' + user + '"', 'comment']]]);
               auth_button.val('Logout ' + user);
               dispatcher.post('user', [user]);
-              $('.login').show();
               $('#search_medline_form').show();
               $('#homepage_no_auth_msg').hide();
+	      $('#signup_button').hide();
             } else {
               user = null;
               auth_button.val('Login');
               dispatcher.post('user', [null]);
               $('#search_medline_form').hide();
               $('#homepage_no_auth_msg').show();
-              $('.login').hide();
             }
           },
           { keep: true }
@@ -2144,9 +2143,6 @@ var VisualizerUI = (function($, window, undefined) {
       var annotationIsAvailable = function() {
         annotationAvailable = true;
       };
-
-      // hide anything requiring login, just in case
-      $('.login').hide();
 
       // XXX TODO a lot
       var touchStart;

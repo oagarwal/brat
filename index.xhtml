@@ -64,12 +64,12 @@
     <div class="center_wrapper" id="no_svg_wrapper">
       <div>
         <div>
-          <fieldset id="no_document_message">
+          <div id="no_document_message">
 		<p class="unselectable" id="homepage_no_auth_msg">Please login to search for medical abstracts. You can help improve the search by annotating articles with the annotate button</p>
 		<form id="search_medline_form" title="Search MEDLINE">
 			<input id="medline_search_term" type="text" placeholder="Search term"/>
 		</form>
-          </fieldset>
+          </div>
           <fieldset id="loading_message" style="display:none">
             <h1 class="unselectable">Loading ...</h1>
             <p class="unselectable">This may take a while, in
@@ -114,14 +114,14 @@
           <input readonly="readonly" class="ui-widget-header"/>
         </div>
       </div>
-    <div id="pulldown_buttons">
-       <input id="auth_button" type="button" value="Login"/>
-       <input id="signup_button" type="button" value="Sign up"/>
-    </div>
-    <!-- Dummy span, fixes visual glitch (issue #535). TODO: better fix -->
-    <span class="document_edit_time unselectable">&nbsp;</span>
-    <div id="document_mtime" class="document_edit_time unselectable">&nbsp;</div>
-     <a id="home_link" href="/">Home</a>
+      <div id="pulldown_buttons">
+        <input id="auth_button" type="button" value="Login"/>
+        <input id="signup_button" type="button" value="Sign up"/>
+      </div>
+      <!-- Dummy span, fixes visual glitch (issue #535). TODO: better fix -->
+      <span class="document_edit_time unselectable">&nbsp;</span>
+      <div id="document_mtime" class="document_edit_time unselectable">&nbsp;</div>
+      <a id="home_link" href="/">Home</a>
     </div>
     <div id="svg"></div>
     <form id="import_form" class="dialog" title="Import">
@@ -184,18 +184,6 @@
           <span id="side-by-side_cmp" title="Enter side-by-side comparison mode"/>
         </div>
       </fieldset>
-      <!-- Data dialog automatic annotation section -->
-      <div id="auto_tagging_login_control" class="login">
-        <fieldset id="auto_tagging_fieldset" class="small-buttons">
-          <legend>Automatic annotation</legend>
-          <div class="optionRow">Automatically tag current document</div>
-          <div id="tagger_buttons"/>
-        </fieldset>
-        <fieldset id="no_tagger_message" style="display:none">
-          <legend>Automatic annotation</legend>
-          <div style="color:gray; font-size:80%; text-align:center; margin:1em">(No tools set up. Please contact server administrator if needed.)</div>
-        </fieldset>
-      </div>
       <!-- Data dialog import section -->
       <fieldset class="login small-buttons">
         <legend>Import</legend>
