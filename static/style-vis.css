@@ -12,7 +12,7 @@ text {
 */
 
 #svg {
-  margin: 34px auto 100px;
+  /*margin: 34px auto 100px;*/
   padding-top: 15px;
 }
 
@@ -47,7 +47,7 @@ text {
 }
 
 svg {
-  margin-top: 50px;
+  margin-top: 60px;
   width: 100%;
   height: 1px;
   /*border: 1px solid #7fa2ff;*/

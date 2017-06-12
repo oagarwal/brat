@@ -527,25 +527,26 @@ div.scroll_wrapper_upper div.scroller {
   font-size: 11px !important;
   font-family: 'PT Sans Caption', sans-serif !important;
 }
-
 #medline_search_term {
   border: 1px solid #3734B4;
   border-radius: 2px;
   font-size: 15px;
-  width: 80%;
-  height: 35px;
+  width: 70%;
+  height: 30px;
   margin: 8px;
+  margin-left: 20px;
   padding: 5px 5px;
-  font-size: 16px;
+  font-size: 15px;
 }
 #medline_search-ok{
     background-color: #3734B4;
     color: white;
     padding: 10px 20px;
     margin: 8px 8px;
+    margin-right: 20px;
     border: none;
     cursor: pointer;
-    width: 15%;
+    width: 10%;
 }
 #results button {
     background-color: #9C42AD;
@@ -569,12 +570,16 @@ div.scroll_wrapper_upper div.scroller {
 #results {
     color: #666666;
     font-size: 14px;
-
 }
 #no_document_message {
     background-color: #f9f9f9;
     color: #002D64;
     text-align: center; 
+}
+#medline {
+    margin-top: 250px;
+    background-color: #f9f9f9;
+    text-align: center;
 }
 @font-face {
   font-family: 'Astloch';

@@ -670,21 +670,8 @@ var VisualizerUI = (function($, window, undefined) {
       initForm(fileBrowser, {
           alsoResize: '#document_select',
           close: function(evt) {
-            if (!doc) {
-              // no document; set and show the relevant message, and
-              // clear the "blind" unless waiting for a collection
-              if (fileBrowserClosedWithSubmit) {
-                $('#no_document_message').hide();
-                $('#loading_message').show();
-              } else {
-                $('#loading_message').hide();
-                $('#no_document_message').show();
-                $('#waiter').dialog('close');
-              }
-              showNoDocMessage();
-            } else if (!fileBrowserClosedWithSubmit && !searchActive) {
-              //dispatcher.post('setArguments', [{}, true]);
-            }
+	         hideForm();
+		 $('#waiter').dialog('close');
           },
           width: 500
       });
@@ -1946,7 +1933,7 @@ var VisualizerUI = (function($, window, undefined) {
                 $('#auth_user').val('');
                 $('#auth_pass').val('');
                 dispatcher.post('user', [user]);
-		$('#homepage_no_auth_msg').hide();
+		$('#no_svg_wrapper').hide();
 		$('#search_medline_form').show();
 		$('#signup_button').hide();
               }
@@ -2008,7 +1995,8 @@ var VisualizerUI = (function($, window, undefined) {
 		$('#waiter').dialog('close');
 		$('#results').remove();
 		$('#no_svg_wrapper').remove();
-		var text = "<div id=\"results\" style=\"margin-top: 60px;\">";
+		$('#medline').css('margin-top','110px');
+		var text = "<div id=\"results\">";
 		var i;
 		for(i=0;i<response.names.length;i++){
 			text += "<br/><br/>"+(i+1)+". <a class=\"medlineabstract\" rev=\""+response.rct[i]+"\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a>";
@@ -2063,14 +2051,14 @@ var VisualizerUI = (function($, window, undefined) {
               auth_button.val('Logout ' + user);
               dispatcher.post('user', [user]);
               $('#search_medline_form').show();
-              $('#homepage_no_auth_msg').hide();
+              $('#no_svg_wrapper').hide();
 	      $('#signup_button').hide();
             } else {
               user = null;
               auth_button.val('Login');
               dispatcher.post('user', [null]);
               $('#search_medline_form').hide();
-              $('#homepage_no_auth_msg').show();
+              $('#no_svg_wrapper').show();
             }
           },
           { keep: true }
@@ -2111,7 +2099,7 @@ var VisualizerUI = (function($, window, undefined) {
 
       var noFileSpecified = function() {
         // not (only) an error, so no messaging
-        dispatcher.post('clearSVG');
+        //dispatcher.post('clearSVG');
 	$('#waiter').dialog('close');
       }
 

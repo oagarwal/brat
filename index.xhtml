@@ -65,9 +65,6 @@
         <div>
           <div id="no_document_message">
 		<p class="unselectable" id="homepage_no_auth_msg">Please login to search for medical abstracts. You can help improve the search by annotating articles with the annotate button</p>
-		<form id="search_medline_form" title="Search MEDLINE">
-			<input id="medline_search_term" type="text" placeholder="Search term"/>
-		</form>
           </div>
           <fieldset id="loading_message" style="display:none">
             <h1 class="unselectable">Loading ...</h1>
@@ -121,6 +118,11 @@
       <span class="document_edit_time unselectable">&nbsp;</span>
       <div id="document_mtime" class="document_edit_time unselectable">&nbsp;</div>
       <a id="home_link" href="/">Home</a>
+    </div>
+    <div id="medline">
+    <form id="search_medline_form" title="Search MEDLINE">
+        <input id="medline_search_term" type="text" placeholder="Search term"/>
+    </form>
     </div>
     <div id="svg"></div>
     <form id="import_form" class="dialog" title="Import">
