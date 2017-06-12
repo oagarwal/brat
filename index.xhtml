@@ -47,7 +47,6 @@
           var logger = new AnnotationLog(dispatcher);
           // Util.profileEnable();
           dispatcher.post('init');
-          $('#search_medline_form').hide();
 	  $('#collection_browser_button').hide();
       });
 
@@ -64,7 +63,14 @@
       <div>
         <div>
           <div id="no_document_message">
-		<p class="unselectable" id="homepage_no_auth_msg">Please login to search for medical abstracts. You can help improve the search by annotating articles with the annotate button</p>
+            <p class="unselectable" id="homepage_no_auth_msg">Welcome to the brat annotation tool!.
+	      Please login to search for medical abstracts. You can help improve the search by annotating articles with the annotate button. <br/><br/>
+  	      Please be aware that brat currently only fully supported on <a href="http://www.google.com/chrome">Google Chrome</a>and <a href="http://www.apple.com/safari/">Safari</a>.In other browsers, it may exhibit various degrees of problems, from minor annoyances to severe ones that make <span class="logo">brat</span> unusable. For more information, see the page on <a href="http://brat.nlplab.org/supported-browsers.html" target="manual">browser support</a>.<br/><br/>
+              Below is a mini-tutorial for basic usage.<br/><br/>
+	      When logged in, it is possible to add annotations for a text span simply by selecting that span with the mouse, either by &quot;dragging&quot; over the text or by double-clicking on a word.<br/><br/>
+	      After selecting a span, the system shows the annotation dialog. This allows the selection of the type to assign to the newly created annotation.<br/><br/>
+              Existing annotations can be modified or deleted from the same  annotation dialog, which can be brought up by double-clicking on an annotation.
+	   </p>
           </div>
           <fieldset id="loading_message" style="display:none">
             <h1 class="unselectable">Loading ...</h1>

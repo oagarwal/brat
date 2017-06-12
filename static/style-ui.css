@@ -574,12 +574,17 @@ div.scroll_wrapper_upper div.scroller {
 #no_document_message {
     background-color: #f9f9f9;
     color: #002D64;
-    text-align: center; 
 }
 #medline {
     margin-top: 250px;
     background-color: #f9f9f9;
     text-align: center;
+}
+#dialog-message {
+    line-height: 1.2;
+    margin-top: 10px;
+    font-family: 'Liberation Sans', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 15px;
 }
 @font-face {
   font-family: 'Astloch';
