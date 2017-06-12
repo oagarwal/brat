@@ -1,15 +1,17 @@
 from Bio import Entrez
 from sys import stderr
-from os import remove,listdir
+from os import rename,listdir
+from os.path import isdir
+from config import DATA_DIR
 
-def search_articles(query):
+def search_articles(query,username):
 	Entrez.email = 'oagarwal@seas.upenn.edu'
-	handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='10',retmode='xml',term=query)
+	handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='20',retmode='xml',term=query)
 	id_list = Entrez.read(handle)['IdList']
-  	results = fetch_details(id_list)
+  	results = fetch_details(id_list,username)
 	return results
 
-def fetch_details(id_list):
+def fetch_details(id_list,username):
 	ids = ','.join(id_list)
 	Entrez.email = 'oagarwal@seas.upenn.edu'
 	handle = Entrez.efetch(db='pubmed',retmode='xml',id=ids)
@@ -26,7 +28,7 @@ def fetch_details(id_list):
 		articles_mesh.append(", ".join(mesh_terms));
 		article_years.append(result['MedlineCitation']['DateCreated']['Year'])
 		articles_rct.append('Randomized Controlled Trial' in result['MedlineCitation']['Article']['PublicationTypeList'] and 'Humans' in mesh_terms);
-		save_article(str(result['MedlineCitation']['PMID']),result['MedlineCitation']['Article']['Abstract']['AbstractText'])
+		save_article(str(result['MedlineCitation']['PMID']),result['MedlineCitation']['Article']['Abstract']['AbstractText'],username)
 	results = {}
 	results['names'] = article_names
 	results['pmids'] = article_ids
@@ -35,17 +37,18 @@ def fetch_details(id_list):
 	results['mesh'] = articles_mesh
 	return results
 
-def save_article(pmid,abstract):
+def save_article(pmid,abstract,username):
 	abstract = '\n'.join(abstract)
-	f = open("data/medline/"+pmid+".txt",'w')
+	f = open(DATA_DIR+'/'+username+'/'+pmid+".txt",'w')
 	f.write(abstract.encode('utf-8'))
 	f.close()
 
-def clear_articles():
-	for file_name in get_all_files("data/medline"):
+def clear_articles(username):
+	for file_name in get_all_files(DATA_DIR+'/'+username):
 		if file_name[-4:] != "conf":
-			remove("data/medline/"+file_name)
+			rename(DATA_DIR+'/'+username+'/'+file_name,DATA_DIR+'/'+username+'/old/'+file_name)
+	return {}
 
 def get_all_files(input_dir):
-        return [direc for direc in listdir(input_dir)]
+        return [direc for direc in listdir(input_dir) if not isdir(input_dir+'/'+direc)]
 

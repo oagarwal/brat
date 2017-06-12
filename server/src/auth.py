@@ -12,8 +12,10 @@ Version:    2011-04-21
 
 from hashlib import sha512
 from os.path import dirname, join as path_join, isdir
+from os import mkdir
 import mysql.connector
 from sys import stderr
+from config import DATA_DIR
 
 try:
     from os.path import relpath
@@ -161,6 +163,11 @@ def signup(user, password):
     cursor.close()
     cnx.commit()
     cnx.close()
+    mkdir( DATA_DIR+'/'+user, 0755 );
+    mkdir( DATA_DIR+'/'+user+'/old', 0755 );
+    f = open(DATA_DIR+'/'+user+'/annotation.conf','w')
+    f.write("[entities]\n\nPatient\nIntervention\nOutcome\n\n[relations]\n[events]\n[attributes]\n")
+    f.close()
     Messager.info('Signed up! Hello!')
     return {}
 

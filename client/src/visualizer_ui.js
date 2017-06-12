@@ -1988,8 +1988,13 @@ var VisualizerUI = (function($, window, undefined) {
 	evt.preventDefault();
 	$('#waiter').dialog('open');
 	dispatcher.post('ajax', [{
+		action: 'clearSearch',
+		username: user,
+	}]);
+	dispatcher.post('ajax', [{
 		action: 'medlineSearch',
 		query: $('#medline_search_term').val(),
+		username: user,
 	},
 	function(response) {
 		$('#waiter').dialog('close');
@@ -2001,7 +2006,7 @@ var VisualizerUI = (function($, window, undefined) {
 		for(i=0;i<response.names.length;i++){
 			text += "<br/><br/>"+(i+1)+". <a class=\"medlineabstract\" rev=\""+response.rct[i]+"\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a>";
 			if(response.rct[i]){
-			    text += "<a href=\"#/medline/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
+			    text += "<a href=\"#/"+user+"/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
 			}
 			text += "<br/> Keywords: " + response.mesh[i];
 		}
@@ -2012,7 +2017,7 @@ var VisualizerUI = (function($, window, undefined) {
 		var isRCT = this.rev;
 		dispatcher.post('ajax', [{
         		action: 'getDocument',
-            		collection: '/medline/',
+            		collection: '/'+user+'/',
             		'document': this.id,
 		},
 		function(response) {
@@ -2021,7 +2026,7 @@ var VisualizerUI = (function($, window, undefined) {
 			text = "<div id=\"dialog-message\">";
 			//Hack for button
 			if(isRCT == "true"){
-			   text += "<a href=\"#/medline/"+response.docname+"\"><button type=\"button\">Annotate</button></a>";
+			   text += "<a href=\"#/"+user+"/"+response.docname+"\"><button type=\"button\">Annotate</button></a>";
 			}
 			text += "<p>" + response.text + "</p></div>";
 			$("body").append(text);

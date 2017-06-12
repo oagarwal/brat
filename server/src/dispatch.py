@@ -106,6 +106,7 @@ DISPATCHER = {
         'getConfiguration': get_configuration,
         'convert': convert,
 	'medlineSearch': search_articles,
+	'clearSearch' : clear_articles,
        }
 
 # Actions that correspond to annotation functionality
