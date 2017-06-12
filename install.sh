@@ -104,6 +104,9 @@ else
 
     cp ${base_dir}/configurations/example-conf/*.conf ${DATA_DIR}
 
+    #Make medline folders and config
+    cp -r ${base_dir}/medline ${DATA_DIR}/
+
     # Make $work_dir_abs and $data_dir_abs writable by Apache
 
     group_ok=0
