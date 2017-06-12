@@ -17,15 +17,21 @@ def fetch_details(id_list):
 	article_names = [] 
 	article_ids = []
 	article_years = []
+	articles_rct = []
+	articles_mesh = []
 	for i, result in enumerate(results['PubmedArticle']):
 		article_names.append(result['MedlineCitation']['Article']['ArticleTitle'])
 		article_ids.append(str(result['MedlineCitation']['PMID']))
+		mesh_terms =  [str(val['DescriptorName']) for val in result['MedlineCitation']['MeshHeadingList']]
+		articles_mesh.append(", ".join(mesh_terms));
 		article_years.append(result['MedlineCitation']['DateCreated']['Year'])
+		articles_rct.append('Randomized Controlled Trial' in result['MedlineCitation']['Article']['PublicationTypeList'] and 'Humans' in mesh_terms);
 		save_article(str(result['MedlineCitation']['PMID']),result['MedlineCitation']['Article']['Abstract']['AbstractText'])
 	results = {}
 	results['names'] = article_names
 	results['pmids'] = article_ids
 	results['years'] = article_years
+	results['rct'] = articles_rct
 	return results
 
 def save_article(pmid,abstract):

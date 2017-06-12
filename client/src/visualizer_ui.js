@@ -2011,12 +2011,16 @@ var VisualizerUI = (function($, window, undefined) {
 		var text = "<div id=\"results\" style=\"margin-top: 60px;\">";
 		var i;
 		for(i=0;i<response.names.length;i++){
-			text += "<br/><br/>"+"<a class=\"medlineabstract\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a><a href=\"#/medline/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
+			text += "<br/><br/>"+"<a class=\"medlineabstract\" rev=\""+response.rct[i]+"\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a>";
+			if(response.rct[i]){
+			    text += "<a href=\"#/medline/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
+			}
 		}
 	text += "</div>";
 	$("body").append(text);
       	$('.medlineabstract').click(function(envt) {
 		envt.preventDefault();
+		var isRCT = this.rev;
 		dispatcher.post('ajax', [{
         		action: 'getDocument',
             		collection: '/medline/',
@@ -2025,7 +2029,12 @@ var VisualizerUI = (function($, window, undefined) {
 		function(response) {
 			response.text = response.text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g,"&apos;").replace(/"/g,"&quot;");
 			$("#dialog-message").remove();
-			text = "<div id=\"dialog-message\"><a href=\"#/medline/"+response.docname+"\"><button type=\"button\">Annotate</button></a><p>" +response.text+"</p></div>";
+			text = "<div id=\"dialog-message\">";
+			//Hack for button
+			if(isRCT == "true"){
+			   text += "<a href=\"#/medline/"+response.docname+"\"><button type=\"button\">Annotate</button></a>";
+			}
+			text += "<p>" + response.text + "</p></div>";
 			$("body").append(text);
 			$("#dialog-message" ).dialog({
       				modal: true,
