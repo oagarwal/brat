@@ -566,6 +566,11 @@ div.scroll_wrapper_upper div.scroller {
 #results a:hover {
     text-decoration: underline;
 }
+#results {
+    color: #666666;
+    font-size: 14px;
+
+}
 #no_document_message {
     background-color: #f9f9f9;
     color: #002D64;

@@ -22,7 +22,7 @@ def fetch_details(id_list):
 	for i, result in enumerate(results['PubmedArticle']):
 		article_names.append(result['MedlineCitation']['Article']['ArticleTitle'])
 		article_ids.append(str(result['MedlineCitation']['PMID']))
-		mesh_terms =  [str(val['DescriptorName']) for val in result['MedlineCitation']['MeshHeadingList']]
+		mesh_terms =  set([str(val['DescriptorName']) for val in result['MedlineCitation']['MeshHeadingList']])
 		articles_mesh.append(", ".join(mesh_terms));
 		article_years.append(result['MedlineCitation']['DateCreated']['Year'])
 		articles_rct.append('Randomized Controlled Trial' in result['MedlineCitation']['Article']['PublicationTypeList'] and 'Humans' in mesh_terms);
@@ -32,6 +32,7 @@ def fetch_details(id_list):
 	results['pmids'] = article_ids
 	results['years'] = article_years
 	results['rct'] = articles_rct
+	results['mesh'] = articles_mesh
 	return results
 
 def save_article(pmid,abstract):
