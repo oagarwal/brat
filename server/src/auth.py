@@ -28,6 +28,13 @@ from message import Messager
 from session import get_session, invalidate_session
 from projectconfig import ProjectConfiguration
 
+mysql_config = {
+  'user': 'oshin',
+  'password': 'bratmedline',
+  'host': 'east-mysql-instance1.ckwuvvjrdeqm.us-east-1.rds.amazonaws.com',
+  'port': 3306,
+  'database': 'medline',
+}
 
 # To raise if the authority to carry out an operation is lacking
 class NotAuthorisedError(ProtocolError):
@@ -74,7 +81,7 @@ def _is_authenticated(user, password):
     if not user or not password:
         return False
 
-    cnx = mysql.connector.connect(user='root', password='oshin',host='127.0.0.1',database='medline');
+    cnx = mysql.connector.connect(**mysql_config);
     cursor = cnx.cursor()
     query = "select password from users where username='%s'" % user;
     cursor.execute(query)
@@ -144,7 +151,7 @@ def signup(user, password):
         Messager.info('Username or password not provided!')
         return {}
 
-    cnx = mysql.connector.connect(user='root', password='oshin',host='127.0.0.1',database='medline');
+    cnx = mysql.connector.connect(**mysql_config);
     cursor = cnx.cursor()
     query = "select username from users where username='%s'" % user;
     cursor.execute(query)
