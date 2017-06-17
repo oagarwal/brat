@@ -6,9 +6,12 @@ from config import DATA_DIR
 
 def search_articles(query,username):
 	Entrez.email = 'oagarwal@seas.upenn.edu'
-	handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='20',retmode='xml',term=query)
+	handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='15',retmode='xml',term=query)
 	id_list = Entrez.read(handle)['IdList']
-  	results = fetch_details(id_list,username)
+	query += " AND Randomized controlled Trial[Publication Type]"
+	handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='5',retmode='xml',term=query)
+	id_list += Entrez.read(handle)['IdList']
+  	results = fetch_details(set(id_list),username)
 	return results
 
 def fetch_details(id_list,username):
