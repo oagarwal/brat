@@ -2003,12 +2003,17 @@ var VisualizerUI = (function($, window, undefined) {
 		$('#medline').css('margin-top','110px');
 		var text = "<div id=\"results\">";
 		var i;
-		for(i=0;i<response.names.length;i++){
-			text += "<br/><br/>"+(i+1)+". <a class=\"medlineabstract\" rev=\""+response.rct[i]+"\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a>";
-			if(response.rct[i]){
-			    text += "<a href=\"#/"+user+"/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
+		if(response.names == undefined){
+                	dispatcher.post('messages', [[['Error in search. Please try again', 'error']]]);
+        	}
+		else{
+			for(i=0;i<response.names.length;i++){
+				text += "<br/><br/>"+(i+1)+". <a class=\"medlineabstract\" rev=\""+response.rct[i]+"\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a>";
+				if(response.rct[i]){
+				    text += "<a href=\"#/"+user+"/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
+				}
+				text += "<br/> Keywords: " + response.mesh[i];
 			}
-			text += "<br/> Keywords: " + response.mesh[i];
 		}
 	text += "</div>";
 	$("body").append(text);

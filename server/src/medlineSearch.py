@@ -6,8 +6,13 @@ from config import DATA_DIR
 
 def search_articles(query,username):
 	Entrez.email = 'oagarwal@seas.upenn.edu'
-	handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='15',retmode='xml',term=query)
+	try:
+		handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='15',retmode='xml',term=query)
+	except:
+		return {}
 	id_list = Entrez.read(handle)['IdList']
+	if len(id_list) <=0:
+		return {}
 	query += " AND Randomized controlled Trial[Publication Type]"
 	handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='5',retmode='xml',term=query)
 	id_list += Entrez.read(handle)['IdList']
@@ -25,13 +30,37 @@ def fetch_details(id_list,username):
 	articles_rct = []
 	articles_mesh = []
 	for i, result in enumerate(results['PubmedArticle']):
-		article_names.append(result['MedlineCitation']['Article']['ArticleTitle'])
-		article_ids.append(str(result['MedlineCitation']['PMID']))
-		mesh_terms =  set([str(val['DescriptorName']) for val in result['MedlineCitation']['MeshHeadingList']])
-		articles_mesh.append(", ".join(mesh_terms));
-		article_years.append(result['MedlineCitation']['DateCreated']['Year'])
-		articles_rct.append('Randomized Controlled Trial' in result['MedlineCitation']['Article']['PublicationTypeList'] and 'Humans' in mesh_terms);
-		save_article(str(result['MedlineCitation']['PMID']),result['MedlineCitation']['Article']['Abstract']['AbstractText'],username)
+
+		if 'PMID' in result['MedlineCitation']:
+			article_ids.append(str(result['MedlineCitation']['PMID']))
+		else:
+			continue;
+
+                if 'MeshHeadingList' in result['MedlineCitation']:
+                        mesh_terms =  set([str(val['DescriptorName']) for val in result['MedlineCitation']['MeshHeadingList']])
+                        articles_mesh.append(", ".join(mesh_terms));
+
+
+		if 'Article' in result['MedlineCitation']:
+			if 'ArticleTitle' in result['MedlineCitation']['Article']:
+				article_names.append(result['MedlineCitation']['Article']['ArticleTitle'])
+			else:
+				article_names.append(None)
+			if 'PublicationTypeList' in result['MedlineCitation']['Article']:
+				articles_rct.append('Randomized Controlled Trial' in result['MedlineCitation']['Article']['PublicationTypeList'] and 'Humans' in mesh_terms);
+			else:
+				articles_rct.append(None)
+
+		if 'DateCreated' in result['MedlineCitation'] and 'Year' in result['MedlineCitation']['DateCreated']:
+			article_years.append(result['MedlineCitation']['DateCreated']['Year'])
+		else:
+			article_years.append(None)
+		
+		if 'Article' in result['MedlineCitation'] and 'Abstract' in result['MedlineCitation']['Article'] and 'AbstractText' in result['MedlineCitation']['Article']['Abstract']:	
+			save_article(str(result['MedlineCitation']['PMID']),result['MedlineCitation']['Article']['Abstract']['AbstractText'],username)
+		else:
+			save_article(str(result['MedlineCitation']['PMID']),'Abstract Unavailable',username)
+
 	results = {}
 	results['names'] = article_names
 	results['pmids'] = article_ids
