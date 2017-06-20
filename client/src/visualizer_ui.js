@@ -1934,7 +1934,7 @@ var VisualizerUI = (function($, window, undefined) {
                 $('#auth_pass').val('');
                 dispatcher.post('user', [user]);
 		$('#no_svg_wrapper').hide();
-		$('#search_medline_form').show();
+		$('#medline').show();
 		$('#signup_button').hide();
               }
           }]);
@@ -2046,6 +2046,12 @@ var VisualizerUI = (function($, window, undefined) {
       }
       searchMedlineForm.submit(searchMedlineFormSubmit);
 
+      $('.sample_search_term').click(function(envt) {
+                envt.preventDefault();
+		$('#medline_search_term').val(this.id);
+		$('#medline_search-ok').click();
+      });
+
       var init = function() {
         dispatcher.post('initForm', [viewspanForm, {
             width: 760,
@@ -2060,14 +2066,14 @@ var VisualizerUI = (function($, window, undefined) {
               dispatcher.post('messages', [[['Welcome back, user "' + user + '"', 'comment']]]);
               auth_button.val('Logout ' + user);
               dispatcher.post('user', [user]);
-              $('#search_medline_form').show();
+              $('#medline').show();
               $('#no_svg_wrapper').hide();
 	      $('#signup_button').hide();
             } else {
               user = null;
               auth_button.val('Login');
               dispatcher.post('user', [null]);
-              $('#search_medline_form').hide();
+              $('#medline').hide();
               $('#no_svg_wrapper').show();
             }
           },

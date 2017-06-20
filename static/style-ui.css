@@ -586,6 +586,9 @@ div.scroll_wrapper_upper div.scroller {
     font-family: 'Liberation Sans', Verdana, Arial, Helvetica, sans-serif;
     font-size: 15px;
 }
+.sample_search_term {
+   margin: 5px;
+}
 @font-face {
   font-family: 'Astloch';
   font-style: normal;
