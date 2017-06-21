@@ -1889,6 +1889,19 @@ var VisualizerUI = (function($, window, undefined) {
         showForm(helpDialog);
       });
 
+      ackDialog = $('#brat_ack');
+      ackDialog.dialog({
+            autoOpen: false,
+            closeOnEscape: true,
+            resizable: false,
+            modal: true,
+            height: 250,
+            width: 400,
+          });
+      $('#brat_ack_button').click(function() {
+        showForm(ackDialog);
+      });
+
       // TODO: copy from annotator_ui; DRY it up
       var adjustFormToCursor = function(evt, element) {
         var screenHeight = $(window).height() - 8; // TODO HACK - no idea why -8 is needed

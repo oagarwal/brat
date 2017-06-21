@@ -605,13 +605,13 @@ div.scroll_wrapper_upper div.scroller {
 .sample_search_term {
    margin: 5px;
 }
-#contactus, #aboutus {
+#contactus, #aboutus, #brat_ack_button{
     margin: 5px 5px;
     margin-right: 10px;
     float: right;
     cursor: pointer;
 }
-#about, #contact {
+#about, #contact, #brat_ack {
     text-align: justify;
 }
 @font-face {
