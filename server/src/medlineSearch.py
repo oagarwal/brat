@@ -7,6 +7,8 @@ from config import DATA_DIR
 def search_articles(query,username):
 	username = username.strip()
 	Entrez.email = 'oagarwal@seas.upenn.edu'
+	with open(DATA_DIR+'/'+username+'/search_terms.txt','a+') as f:
+		f.write(query+'\n');
 	try:
 		handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='15',retmode='xml',term=query)
 	except:
@@ -79,7 +81,7 @@ def save_article(pmid,abstract,username):
 def clear_articles(username):
         username = username.strip()
 	for file_name in get_all_files(DATA_DIR+'/'+username):
-		if file_name[-4:] != "conf":
+		if file_name[-4:] != "conf" and file_name!= "search_terms.txt":
 			rename(DATA_DIR+'/'+username+'/'+file_name,DATA_DIR+'/'+username+'/old/'+file_name)
 	return {}
 
