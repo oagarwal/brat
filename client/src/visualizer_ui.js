@@ -1858,14 +1858,10 @@ var VisualizerUI = (function($, window, undefined) {
             closeOnEscape: true,
             resizable: false,
             modal: true,
-            open: function() {
-                aboutDialog.find('*').blur();
-              },
-            beforeClose: function() {
-                currentForm = null;
-              }
+            height: 600,
+            width: 700,
           });
-      $('#mainlogo').click(function() {
+      $('#aboutus').click(function() {
         showForm(aboutDialog);
       });
 

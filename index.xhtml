@@ -63,13 +63,12 @@
       <div>
         <div>
           <div id="no_document_message">
-            <p class="unselectable" id="homepage_no_auth_msg">Welcome to the brat annotation tool!.
-	      Please login to search for medical abstracts. You can help improve the search by annotating articles with the annotate button. <br/><br/>
-  	      Please be aware that brat currently only fully supported on <a href="http://www.google.com/chrome">Google Chrome</a>and <a href="http://www.apple.com/safari/">Safari</a>.In other browsers, it may exhibit various degrees of problems, from minor annoyances to severe ones that make <span class="logo">brat</span> unusable. For more information, see the page on <a href="http://brat.nlplab.org/supported-browsers.html" target="manual">browser support</a>.<br/><br/>
-              Below is a mini-tutorial for basic usage.<br/><br/>
-	      When logged in, it is possible to add annotations for a text span simply by selecting that span with the mouse, either by &quot;dragging&quot; over the text or by double-clicking on a word.<br/><br/>
-	      After selecting a span, the system shows the annotation dialog. This allows the selection of the type to assign to the newly created annotation.<br/><br/>
-              Existing annotations can be modified or deleted from the same  annotation dialog, which can be brought up by double-clicking on an annotation.
+            <p class="unselectable" id="homepage_no_auth_msg">
+	      <h2 align="middle">Welcome to the brat annotation tool</h2><br/>
+	      Healthcare providers often want to know what treatment is likely to work best for their patient, according to the available evidence. We are working on building a system that would help them in finding the relevant evidence easily.<br/><br/>
+	      You can help us by marking an article with clinically important information. We are basically looking for categories in the PICO model - Patient, Intervention, Comparison and Outcome. When you search for articles and find an annotate button next to it, you can follow that link to mark it. For instructions on how to annotate, click on the tutorial button at the top of the page at any time. <br/><br/>
+	      To know more about the project and how you fit in, please follow the link at the bottom of the page.<br/><br/>
+              Please note that this is the starting version of the tool and might not be completely stable. Any feedback would be highly appreciated. Do let us know if you encounter any issues. You can find our contact information at the bottom of the page.
 	   </p>
           </div>
           <fieldset id="loading_message" style="display:none">
@@ -111,7 +110,7 @@
     <div id="commentpopup"/>
     <div id="header" class="ui-widget">
       <div id="mainHeader" class="ui-widget-header">
-        <div id="mainlogo" class="logo unselectable">brat</div>
+        <!--div id="mainlogo" class="logo unselectable">brat</div-->
         <div id="document_name">
           <input readonly="readonly" class="ui-widget-header"/>
         </div>
@@ -128,6 +127,7 @@
     </div>
     <div id="footer">
 	<div id="contactus">Contact us</div>
+	<div id="aboutus">About us</div>
     </div>
     <div id="medline">
     <h3>Welcome! You can serach for medical abstracts of your choice below or view medical abstracts in the below categories</h3>
@@ -774,14 +774,6 @@
     <div id="waiter" class="dialog" title="Please wait">
       <img src="static/img/spinner.gif"/>
     </div>
-    <!-- "About" dialog -->
-    <div id="about" class="dialog unselectable" title="About brat">
-      <div id="aboutlogo" class="logo">brat</div>
-      <!--This software is distributed under the <a target="licence" href="http://www.opensource.org/licenses/isc-license">ISC Licence</a>.-->
-      <div align="center">brat rapid annotation tool</div>
-      <div style="font-size:60%" align="center">v1.3 "Crunchy Frog"</div>
-      <div id="copyright">&copy; 2010-2012 The brat contributors</div>
-    </div>
     <!-- Contact dialog -->
     <div id="contact" class="dialog unselectable" title="Contact information">
       <div align="center"><br/>Thanks for using our tool.<br/>You can send us feedback at abc@gmail.com </div>
@@ -793,6 +785,14 @@
 	<img id="help2" height="300" width="500" src="static/img/span-dialog.png"/>
 	<p>Existing annotations can be modified or deleted from the same annotation dialog, which can be brought up by double-clicking on an annotation.</p>
 	<img id="help3" height="300" width="500" src="static/img/edit-span.png"/>
+    </div>
+    <!-- About dialog -->
+    <div id="about" class="dialog unselectable" title="About us">
+    <p>We are collecting “annotations”, or “mark up”, on articles describing the conduct and results of clinical trials ultimately to make finding relevant evidence easier. In particular, healthcare providers often want to know what treatment is likely to work best for their patient, according to the available evidence. But this is surprisingly hard to find! This is in part because results of clinical trials are published as articles meant for consumption by other humans, not machines.</p>
+    <img id="about_img" height="400" width="500" src="static/img/citizen-sci2.png"/>
+    <p>The idea behind this project is to help machines by marking up the important bits of articles in a computer-friendly way, in turn enabling smarter search. For example, telling the computer that an article reports a trial in which a particular treatment (perhaps aspirin) was studied is helpful, because if someone is then specifically looking for evidence about aspirin as a treatment this article can immediately be retrieved. It is not always obvious from the article text alone that this is the case, even if the article contains the word “aspirin”. 
+</p>
+    <p>To collect such mark-up, we are recruiting citizen scientists like yourself mark articles with respect to clinically important information. The big idea is depicted in the figure above. Articles with your annotations attached will be stored in a database, which can then be used to improve search. Furthermore, these annotations are used to train “machine learning” systems, which learn to perform the mark-up automatically! Using this approach, we can automatically mark-up the articles that citizen scientists have not yet got to and deposit these into the database as well. The automated mark-up will probably not be as reliable as when real people do it, but it will likely still be good enough to improve search. </p>
     </div>
   </body>
 </html>

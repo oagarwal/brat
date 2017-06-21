@@ -588,6 +588,8 @@ div.scroll_wrapper_upper div.scroller {
 #no_document_message {
     background-color: #f9f9f9;
     color: #002D64;
+    margin: 50px;
+    text-align: justify;
 }
 #medline {
     margin-top: 250px;
@@ -603,11 +605,14 @@ div.scroll_wrapper_upper div.scroller {
 .sample_search_term {
    margin: 5px;
 }
-#contactus {
+#contactus, #aboutus {
     margin: 5px 5px;
     margin-right: 10px;
     float: right;
     cursor: pointer;
+}
+#about, #contact {
+    text-align: justify;
 }
 @font-face {
   font-family: 'Astloch';
