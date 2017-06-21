@@ -5,6 +5,7 @@ from os.path import isdir
 from config import DATA_DIR
 
 def search_articles(query,username):
+	username = username.strip()
 	Entrez.email = 'oagarwal@seas.upenn.edu'
 	try:
 		handle = Entrez.esearch(db='pubmed',sort='relevance',retmax='15',retmode='xml',term=query)
@@ -76,6 +77,7 @@ def save_article(pmid,abstract,username):
 	f.close()
 
 def clear_articles(username):
+        username = username.strip()
 	for file_name in get_all_files(DATA_DIR+'/'+username):
 		if file_name[-4:] != "conf":
 			rename(DATA_DIR+'/'+username+'/'+file_name,DATA_DIR+'/'+username+'/old/'+file_name)

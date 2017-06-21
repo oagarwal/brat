@@ -81,6 +81,7 @@ def _is_authenticated(user, password):
     if not user or not password:
         return False
 
+    user = user.strip()
     cnx = mysql.connector.connect(**mysql_config);
     cursor = cnx.cursor()
     query = "select password from users where username='%s'" % user;
@@ -99,6 +100,7 @@ def login(user, password):
     if not _is_authenticated(user, password):
         raise InvalidAuthError
 
+    user = user.strip()
     get_session()['user'] = user
     Messager.info('Hello!')
     return {}
@@ -150,7 +152,8 @@ def signup(user, password):
     if not user or not password:
         Messager.info('Username or password not provided!')
         return {}
-
+    
+    user = user.strip()
     cnx = mysql.connector.connect(**mysql_config);
     cursor = cnx.cursor()
     query = "select username from users where username='%s'" % user;
