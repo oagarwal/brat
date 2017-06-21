@@ -12,7 +12,7 @@ Version:    2011-04-21
 
 from hashlib import sha512
 from os.path import dirname, join as path_join, isdir
-from os import mkdir
+from os import mkdir,listdir
 import mysql.connector
 from sys import stderr
 from config import DATA_DIR
@@ -181,4 +181,19 @@ def signup(user, password):
     Messager.info('Signed up! Hello!')
     return {}
 
+def init_user_folders():
+    cnx = mysql.connector.connect(**mysql_config);
+    cursor = cnx.cursor()
+    query = "select username from users";
+    cursor.execute(query)
+    all_folders = set([direc for direc in listdir(DATA_DIR) if isdir(DATA_DIR+'/'+direc)])
+    for row in cursor:
+          val = row[0]
+          if val not in all_folders:
+                mkdir( DATA_DIR+'/'+val, 0755 );
+                mkdir( DATA_DIR+'/'+val+'/old', 0755 );
+                f = open(DATA_DIR+'/'+val+'/annotation.conf','w')
+                f.write("[entities]\n\nPatient\nIntervention\nOutcome\n\n[relations]\n[events]\n[attributes]\n")
+                f.close()
+         
 # TODO: Unittesting

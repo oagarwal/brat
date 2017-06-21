@@ -304,6 +304,8 @@ server is experimental and should not be run as administrator.
     else:
         port = _DEFAULT_SERVER_PORT
 
+    auth.init_user_folders();
+
     try:
         server = BratServer((_DEFAULT_SERVER_ADDR, port))
         print >> sys.stderr, "Serving brat at http://%s:%d" % server.server_address
