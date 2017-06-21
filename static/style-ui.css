@@ -610,6 +610,7 @@ div.scroll_wrapper_upper div.scroller {
     margin-right: 10px;
     float: right;
     cursor: pointer;
+    font-size: 15px;
 }
 #about, #contact, #brat_ack {
     text-align: justify;

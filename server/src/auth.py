@@ -147,7 +147,7 @@ def allowed_to_read(real_path):
 
     return robotparser.can_fetch(user, data_path)
 
-def signup(user, password):
+def signup(user, password, category):
 
     if not user or not password:
         Messager.info('Username or password not provided!')
@@ -168,7 +168,7 @@ def signup(user, password):
        Messager.info('User already exists!')
        return {}
 
-    query = "insert into users(username,password) values('%s','%s')" % (user,password);
+    query = "insert into users(username,password,category) values('%s','%s','%s')" % (user,password,category);
     cursor.execute(query)
     cursor.close()
     cnx.commit()

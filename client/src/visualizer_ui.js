@@ -1990,17 +1990,19 @@ var VisualizerUI = (function($, window, undefined) {
 
       var signupForm = $('#signup_form');
       initForm(signupForm, {
-        height: 250,
+        height: 420,
         width: 400,
 	resizable: false });
       var signupFormSubmit = function(evt) {
         dispatcher.post('hideForm');
         var _user = $('#signup_user').val();
         var password = $('#signup_pass').val();
+	var category = $('input[name=category]:checked').val();
         dispatcher.post('ajax', [{
             action: 'signup',
             user: _user,
             password: password,
+	    category: category,
           },
           function(response) {
               if (response.exception) {

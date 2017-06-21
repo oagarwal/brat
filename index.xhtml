@@ -67,7 +67,7 @@
 	      <h2 align="middle">Welcome to the brat annotation tool</h2><br/>
 	      Healthcare providers often want to know what treatment is likely to work best for their patient, according to the available evidence. We are working on building a system that would help them in finding the relevant evidence easily.<br/><br/>
 	      You can help us by marking an article with clinically important information. We are basically looking for categories in the PICO model - Patient, Intervention, Comparison and Outcome. When you search for articles and find an annotate button next to it, you can follow that link to mark it. For instructions on how to annotate, click on the tutorial button at the top of the page at any time. <br/><br/>
-	      To know more about the project and how you fit in, please follow the link at the bottom of the page.<br/><br/>
+	      To know more about the project and how you fit in, please follow the link at the top right corner of the page.<br/><br/>
               Please note that this is the starting version of the tool and might not be completely stable. Any feedback would be highly appreciated. Do let us know if you encounter any issues. You can find our contact information at the bottom of the page.
 	   </p>
           </div>
@@ -110,7 +110,7 @@
     <div id="commentpopup"/>
     <div id="header" class="ui-widget">
       <div id="mainHeader" class="ui-widget-header">
-        <!--div id="mainlogo" class="logo unselectable">brat</div-->
+        <div id="aboutus">About us</div>
         <div id="document_name">
           <input readonly="readonly" class="ui-widget-header"/>
         </div>
@@ -128,7 +128,6 @@
     <div id="footer">
 	<div id="contactus">Contact us</div>
 	<div id="brat_ack_button">Acknowledgements</div>
-	<div id="aboutus">About us</div>
     </div>
     <div id="medline">
     <h3>Welcome! You can search for medical abstracts of your choice below or view medical abstracts in the below categories</h3>
@@ -722,6 +721,16 @@
       <fieldset>
         <legend>Password</legend>
         <input id="signup_pass" type="password" placeholder="Password" class="borderless"/>
+      </fieldset>
+      <fieldset>
+	<legend>Which category do you fall in?</legend>
+	<input type="radio" name="category" value="doctor"/> Doctor<br/>
+	<input type="radio" name="category" value="nurse"/> Nurse<br/>
+	<input type="radio" name="category" value="student" /> Medical student<br/>
+	<input type="radio" name="category" value="other" /> Other medical background<br/>
+	<input type="radio" name="category" value="patient" /> Patient<br/>
+	<input type="radio" name="category" value="friendFamily" /> Friend/Family of patient<br/>
+	<input type="radio" name="category" value="none" /> None of the above<br/>
       </fieldset>
     </form>
     <!-- Split span annotation dialog -->
