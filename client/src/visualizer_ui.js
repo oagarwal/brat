@@ -1880,6 +1880,19 @@ var VisualizerUI = (function($, window, undefined) {
         showForm(contactDialog);
       });
 
+      helpDialog = $('#help');
+      helpDialog.dialog({
+            autoOpen: false,
+            closeOnEscape: true,
+            resizable: false,
+            modal: true,
+            height: 600,
+            width: 700,
+          });
+      $('#help_button').click(function() {
+        showForm(helpDialog);
+      });
+
       // TODO: copy from annotator_ui; DRY it up
       var adjustFormToCursor = function(evt, element) {
         var screenHeight = $(window).height() - 8; // TODO HACK - no idea why -8 is needed

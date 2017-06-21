@@ -119,6 +119,7 @@
       <div id="pulldown_buttons">
         <input id="auth_button" type="button" value="Login"/>
         <input id="signup_button" type="button" value="Sign up"/>
+	<input id="help_button" type="button" value="Tutorial"/>
       </div>
       <!-- Dummy span, fixes visual glitch (issue #535). TODO: better fix -->
       <span class="document_edit_time unselectable">&nbsp;</span>
@@ -784,6 +785,14 @@
     <!-- Contact dialog -->
     <div id="contact" class="dialog unselectable" title="Contact information">
       <div align="center"><br/>Thanks for using our tool.<br/>You can send us feedback at abc@gmail.com </div>
+    </div>
+    <div id="help" class="dialog unselectable" title="Annotation tutorial">
+	<p>When logged in, it is possible to add annotations for a text span simply by selecting that span with the mouse, either by "dragging" over the text or by double-clicking on a word.</p>
+	<img id="help1" height="200" width="500" src="static/img/annotated_article.png"/>
+	<p>After selecting a span, the system shows the annotation dialog. This allows the selection of the type to assign to the newly created annotation.</p>
+	<img id="help2" height="300" width="500" src="static/img/span-dialog.png"/>
+	<p>Existing annotations can be modified or deleted from the same annotation dialog, which can be brought up by double-clicking on an annotation.</p>
+	<img id="help3" height="300" width="500" src="static/img/edit-span.png"/>
     </div>
   </body>
 </html>
