@@ -5,12 +5,25 @@
 
 html {
   overflow-y: scroll;
+  position: relative;
+  min-height: 100%;
 }
 
 body .ui-widget {
   font-size: 0.9em; /* override jQuery UI */
 }
 
+#footer {
+    background-color: #9C42AD;
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    overflow:hidden;
+}
 
 #navbuttons * {
   vertical-align: middle;
@@ -570,6 +583,7 @@ div.scroll_wrapper_upper div.scroller {
 #results {
     color: #666666;
     font-size: 14px;
+    margin-bottom: 50px;
 }
 #no_document_message {
     background-color: #f9f9f9;
@@ -588,6 +602,12 @@ div.scroll_wrapper_upper div.scroller {
 }
 .sample_search_term {
    margin: 5px;
+}
+#contactus {
+    margin: 5px 5px;
+    margin-right: 10px;
+    float: right;
+    cursor: pointer;
 }
 @font-face {
   font-family: 'Astloch';
