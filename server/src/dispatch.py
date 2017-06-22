@@ -39,6 +39,7 @@ from delete import delete_document, delete_collection
 from norm import norm_get_name, norm_search, norm_get_data
 from sys import stderr
 from medlineSearch import search_articles,clear_articles
+from annotation_time import start_time,end_time
 
 # no-op function that can be invoked by client to log a user action
 def logging_no_op(collection, document, log):
@@ -107,6 +108,8 @@ DISPATCHER = {
         'convert': convert,
 	'medlineSearch': search_articles,
 	'clearSearch' : clear_articles,
+	'startTime' : start_time,
+	'endTime': end_time,
        }
 
 # Actions that correspond to annotation functionality

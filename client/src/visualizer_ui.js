@@ -1903,7 +1903,14 @@ var VisualizerUI = (function($, window, undefined) {
       });
 
       $('#submit_button').click(function() {
-        window.close()
+        dispatcher.post('ajax', [{
+            action: 'endTime',
+            username: user,
+            docname: doc,
+          },
+	function(response) {
+	}]);
+        window.close();
       });
 
       // TODO: copy from annotator_ui; DRY it up

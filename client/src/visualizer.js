@@ -3075,6 +3075,13 @@ Util.profileReport();
             collection: coll,
             'document': doc
           }]);
+        dispatcher.post('ajax', [{
+            action: 'startTime',
+            username: coll,
+            docname: doc,
+          },
+	  function(response){
+	  }]);
       };
 
       var triggerRender = function() {
