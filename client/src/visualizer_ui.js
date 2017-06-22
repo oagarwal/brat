@@ -1902,6 +1902,10 @@ var VisualizerUI = (function($, window, undefined) {
         showForm(ackDialog);
       });
 
+      $('#submit_button').click(function() {
+        window.close()
+      });
+
       // TODO: copy from annotator_ui; DRY it up
       var adjustFormToCursor = function(evt, element) {
         var screenHeight = $(window).height() - 8; // TODO HACK - no idea why -8 is needed
@@ -2045,7 +2049,7 @@ var VisualizerUI = (function($, window, undefined) {
 			for(i=0;i<response.names.length;i++){
 				text += "<br/><br/>"+(i+1)+". <a class=\"medlineabstract\" rev=\""+response.rct[i]+"\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a>";
 				if(response.rct[i]){
-				    text += "<a href=\"#/"+user+"/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
+				    text += "<a target=\"_blank\" href=\"#/"+user+"/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
 				}
 				text += "<br/> Keywords: " + response.mesh[i];
 			}
@@ -2066,7 +2070,7 @@ var VisualizerUI = (function($, window, undefined) {
 			text = "<div id=\"dialog-message\">";
 			//Hack for button
 			if(isRCT == "true"){
-			   text += "<a href=\"#/"+user+"/"+response.docname+"\"><button type=\"button\">Annotate</button></a>";
+			   text += "<a target=\"_blank\" href=\"#/"+user+"/"+response.docname+"\"><button type=\"button\">Annotate</button></a>";
 			}
 			text += "<p>" + response.text + "</p></div>";
 			$("body").append(text);
@@ -2152,6 +2156,7 @@ var VisualizerUI = (function($, window, undefined) {
         // not (only) an error, so no messaging
         //dispatcher.post('clearSVG');
 	$('#waiter').dialog('close');
+	$('#submit_button').hide();
       }
 
       var showUnableToReadTextFile = function() {

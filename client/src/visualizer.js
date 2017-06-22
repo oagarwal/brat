@@ -3065,6 +3065,7 @@ Util.profileReport();
       var renderDocument = function() {
 	$('#results').remove();
 	$('#medline').remove();
+        $('#submit_button').show();
         Util.profileStart('invoke getDocument');
         dispatcher.post('ajax', [{
             action: 'getDocument',
