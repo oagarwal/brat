@@ -5,24 +5,10 @@
 
 html {
   overflow-y: scroll;
-  position: relative;
-  min-height: 100%;
 }
 
 body .ui-widget {
   font-size: 0.9em; /* override jQuery UI */
-}
-
-#footer {
-    background-color: #9C42AD;
-    color: white;
-    font-size: 15px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 30px;
-    width: 100%;
-    overflow:hidden;
 }
 
 #navbuttons * {
@@ -31,7 +17,9 @@ body .ui-widget {
   float: left;
 }
 #header {
-  position: fixed;
+  position: absolute;
+  height: 80px;
+  width: 100%;
   top: 0;
   left: 0;
   right: 0;
@@ -43,7 +31,6 @@ body .ui-widget {
   font-size: 120%;
   overflow: hidden;
   white-space: nowrap;
-  background-color: #9C42AD;
 }
 
 #pulldown {
@@ -57,7 +44,7 @@ body .ui-widget {
   margin-top: 10px;
 }
 #auth_button, #signup_button, #help_button {
-    background-color: #3734B4;
+    background-color: #581845;
     color: white;
     padding: 10px 20px;
     margin: 8px 8px;
@@ -66,7 +53,7 @@ body .ui-widget {
     float: right;
 }
 #submit_button {
-    background-color: #3734B4;
+    background-color: #581835;
     color: white;
     padding: 10px 20px;
     margin: 8px 8px;
@@ -75,10 +62,12 @@ body .ui-widget {
     float: left;
 }
 #auth_button:hover, #signup_button:hover, #home_link:hover, #help_button:hover, #submit_button:hover {
-    background-color: #4744B6;
+    background-color: #D7D2D1;
+    color: black;
+    border: 1px solid #581835;
 }
 #dialog-message button{
-    background-color: #9C42AD;
+    background-color: #581845;
     color: white;
     cursor: pointer;
     float: right;
@@ -130,13 +119,13 @@ body .ui-widget {
   color: #000000;
 }
 .messages > div.comment {
-  background-color: #9C42AD;
+  background-color: #581845;
   color: #ffffff;
   font-weight: bold;
   border: 1px outset #27628F;
 }
 .messages > div.debug {
-  background-color: #9C42AD;
+  background-color: #581845;
   color: #000000;
 }
 
@@ -319,10 +308,11 @@ div.scroll_wrapper_upper div.scroller {
   float: left;
 }
 #home_link {
-    background-color: #3734B4;
+    background-color: #581845;
     color: white;
     padding: 10px 20px;
     margin: 8px 8px;
+    margin-left: 23%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -355,23 +345,6 @@ div.scroll_wrapper_upper div.scroller {
   line-height: 1.2;
 
   font-weight: bold;
-}
-
-#mainlogo {
-  font-size: 1.2em;
-  float: right;
-  cursor: pointer;
-  text-shadow: #000000 0 0 3px;
-  padding: 0 10px 0 20px;
-}
-
-#aboutlogo {
-  font-size: 42px;
-  text-align: center;
-  text-shadow: #888888 0 0 10px;
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
 }
 
 #copyright {
@@ -550,7 +523,7 @@ div.scroll_wrapper_upper div.scroller {
   font-family: 'PT Sans Caption', sans-serif !important;
 }
 #medline_search_term {
-  border: 1px solid #3734B4;
+  border: 1px solid #581845;
   border-radius: 2px;
   font-size: 15px;
   width: 70%;
@@ -561,7 +534,7 @@ div.scroll_wrapper_upper div.scroller {
   font-size: 15px;
 }
 #medline_search-ok{
-    background-color: #3734B4;
+    background-color: #581845;
     color: white;
     padding: 10px 20px;
     margin: 8px 8px;
@@ -571,18 +544,15 @@ div.scroll_wrapper_upper div.scroller {
     width: 10%;
 }
 #results button {
-    background-color: #9C42AD;
+    background-color: #581845;
     color: white;
     padding: 8px 8px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
 }
-#results button:hover {
-    background-color: #A54BB6;
-}
 #results a {
-    color: #002D64;
+    color: #092633;
     text-decoration: none;
     font-size: 15px;   
 }
@@ -590,20 +560,40 @@ div.scroll_wrapper_upper div.scroller {
     text-decoration: underline;
 }
 #results {
-    color: #666666;
+    color: #54434D;
     font-size: 14px;
     margin-bottom: 50px;
-}
-#no_document_message {
-    background-color: #f9f9f9;
-    color: #002D64;
-    margin: 50px;
     text-align: justify;
 }
+#no_document_message {
+    color: #002D64;
+    text-align: justify;
+    width: 90%;
+    float:left;
+    padding-top: 120px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
 #medline {
-    margin-top: 250px;
-    background-color: #f9f9f9;
+    color: #002D64;
     text-align: center;
+    float: left;
+    width: 70%;
+    padding-top: 120px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#explore_abstracts {
+    background-color: #581845;
+    color: white;
+    float: left;
+    width: 20%;
+    padding: 10px;
+}
+#explore_abstracts a{
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
 }
 #dialog-message {
     line-height: 1.2;
@@ -614,12 +604,13 @@ div.scroll_wrapper_upper div.scroller {
 .sample_search_term {
    margin: 5px;
 }
-#contactus, #aboutus, #brat_ack_button{
+#contactus, #brat_ack_button{
     margin: 5px 5px;
     margin-right: 10px;
     float: right;
     cursor: pointer;
     font-size: 15px;
+    color: white;
 }
 #about, #contact, #brat_ack {
     text-align: justify;

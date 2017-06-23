@@ -50,8 +50,6 @@ var VisualizerUI = (function($, window, undefined) {
 
       // this is necessary for centering
       $('#no_svg_wrapper').css('display', 'table');
-      // on initial load, hide the "no SVG" message
-      $('#no_svg_wrapper').hide();
 
       var hideNoDocMessage = function() {
         clearTimeout(noSvgTimer);
@@ -762,13 +760,6 @@ var VisualizerUI = (function($, window, undefined) {
         // "blind" up when retrieving a collection, but not when canceling
         // without selection (would hang the UI)
         fileBrowserClosedWithSubmit = false;
-
-        // no point in showing this while the browser is shown
-        hideNoDocMessage();
-
-        // hide "no document" message when file browser shown
-        // TODO: can't make this work; I can't detect when it gets hidden.
-//         hideNoDocMessage();
 
         if (!(selectorData && showForm(fileBrowser))) return false;
 
@@ -1742,13 +1733,6 @@ var VisualizerUI = (function($, window, undefined) {
           $cmpLink.button();
         }
           
-        $docName = $('#document_name input').val(coll + doc);
-        var docName = $docName[0];
-        // TODO do this on resize, as well
-        // scroll the document name to the right, so the name is visible
-        // (even if the collection name isn't, fully)
-        docName.scrollLeft = docName.scrollWidth;
-
         $('#document_mtime').hide();
         invalidateSavedSVG();
       };
@@ -1861,7 +1845,7 @@ var VisualizerUI = (function($, window, undefined) {
             height: 600,
             width: 700,
           });
-      $('#aboutus').click(function() {
+      $('#about_img').click(function() {
         showForm(aboutDialog);
       });
 
@@ -1977,9 +1961,11 @@ var VisualizerUI = (function($, window, undefined) {
                 $('#auth_user').val('');
                 $('#auth_pass').val('');
                 dispatcher.post('user', [user]);
-		$('#no_svg_wrapper').hide();
+		$('#no_document_message').hide();
 		$('#medline').show();
+		$('#explore_abstracts').show();
 		$('#signup_button').hide();
+		$('#home_link').show();
               }
           }]);
         return false;
@@ -2045,8 +2031,7 @@ var VisualizerUI = (function($, window, undefined) {
 	function(response) {
 		$('#waiter').dialog('close');
 		$('#results').remove();
-		$('#no_svg_wrapper').remove();
-		$('#medline').css('margin-top','110px');
+		$('#no_document_mesage').remove();
 		var text = "<div id=\"results\">";
 		var i;
 		if(response.names == undefined){
@@ -2058,11 +2043,11 @@ var VisualizerUI = (function($, window, undefined) {
 				if(response.rct[i]){
 				    text += "<a target=\"_blank\" href=\"#/"+user+"/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
 				}
-				text += "<br/> Keywords: " + response.mesh[i];
+				text += "<br/> MeSH terms: " + response.mesh[i];
 			}
 		}
 	text += "</div>";
-	$("body").append(text);
+	$("#medline").append(text);
       	$('.medlineabstract').click(function(envt) {
 		envt.preventDefault();
 		var isRCT = this.rev;
@@ -2113,14 +2098,17 @@ var VisualizerUI = (function($, window, undefined) {
               auth_button.val('Logout ' + user);
               dispatcher.post('user', [user]);
               $('#medline').show();
-              $('#no_svg_wrapper').hide();
+              $('#no_document_message').hide();
 	      $('#signup_button').hide();
+	      $('#explore_abstracts').show();
             } else {
               user = null;
               auth_button.val('Login');
               dispatcher.post('user', [null]);
               $('#medline').hide();
-              $('#no_svg_wrapper').show();
+              $('#no_document_message').show();
+              $('#explore_abstracts').hide();
+	      $('#home_link').hide();
             }
           },
           { keep: true }

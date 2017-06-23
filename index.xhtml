@@ -60,17 +60,39 @@
          http://stackoverflow.com/questions/396145/whats-the-best-way-of-centering-a-div-vertically-with-css
       -->
     <div class="center_wrapper" id="no_svg_wrapper">
-      <div>
-        <div>
           <div id="no_document_message">
-            <p class="unselectable" id="homepage_no_auth_msg">
-	      <h2 align="middle">Welcome to the brat annotation tool</h2><br/>
-	      Healthcare providers often want to know what treatment is likely to work best for their patient, according to the available evidence. We are working on building a system that would help them in finding the relevant evidence easily.<br/><br/>
-	      You can help us by marking an article with clinically important information. We are basically looking for categories in the PICO model - Patient, Intervention, Comparison and Outcome. When you search for articles and find an annotate button next to it, you can follow that link to mark it. For instructions on how to annotate, click on the tutorial button at the top of the page at any time. <br/><br/>
-	      To know more about the project and how you fit in, please follow the link at the top right corner of the page.<br/><br/>
-              Please note that this is the starting version of the tool and might not be completely stable. Any feedback would be highly appreciated. Do let us know if you encounter any issues. You can find our contact information at the bottom of the page.
-	   </p>
+            <div class="unselectable" id="homepage_no_auth_msg">
+	      <h2 align="middle">Welcome to the brat annotation tool</h2>
+                  <p>We are collecting “annotations”, or “mark up”, on articles describing the conduct and results of clinical trials ultimately to make finding relevant evidence easier. In particular, healthcare providers often want to know what treatment is likely to work best for their patient, according to the available evidence. But this is surprisingly hard to find! This is in part because results of clinical trials are published as articles meant for consumption by other humans, not machines.</p>
+
+		    <p>The idea behind this project is to help machines by marking up the important bits of articles in a computer-friendly way, in turn enabling smarter search. For example, telling the computer that an article reports a trial in which a particular treatment (perhaps aspirin) was studied is helpful, because if someone is then specifically looking for evidence about aspirin as a treatment this article can immediately be retrieved. It is not always obvious from the article text alone that this is the case, even if the article contains the word “aspirin”.
+</p>
+   		<div style="float:left;width:25%"> <p>To collect such mark-up, we are recruiting citizen scientists like yourself mark articles with respect to clinically important information. The big idea is depicted in the figure. Articles with your annotations attached will be stored in a database, which can then be used to improve search. Furthermore, these annotations are used to train “machine learning” systems, which learn to perform the mark-up automatically! Using this approach, we can automatically mark-up the articles that citizen scientists have not yet got to and deposit these into the database as well. The automated mark-up will probably not be as reliable as when real people do it, but it will likely still be good enough to improve search. </p></div>
+
+	      <div style="float:left;width:50%;"><img id="about_img" height="500" width="600" src="static/img/citizen-sci2.png"/><br/><br/></div>
+
+	      <div style="float:left;width:25%"><p> When you see an "Annotate button" next to an abstract, you can click on it to mark the abstract with important information. In each abstract, we are looking for the descriptions of Patients (medical problem, demographics), Interventions (how were the patients treated) and Outcomes (what measures of treatment success was used).</p>
+
+	     <p>Please note that this is the starting version of the tool and may not be completely stable. Any feedback would be highly appreciated. Our contact information is available at the top of the page.</p></div>
+	   </div>
           </div>
+        <div id="explore_abstracts">
+          <br/><h3 align="middle">Explore articles below</h3><br/>
+	    <ul>
+         	<li><a class="sample_search_term" href="#" id="Cancer">Cancer</a><br/></li>
+          	<li><a class="sample_search_term" href="#" id="Chemotherapy outcome">Chemotherapy outcome</a><br/></li>
+          	<li><a class="sample_search_term" href="#" id="Autism">Autism</a><br/></li>
+          	<li><a class="sample_search_term" href="#" id="Cardiovascular">Cardiovascular</a><br/></li>
+          	<li><a class="sample_search_term" href="#" id="Obesity">Obesity</a><br/></li>
+          	<li><a class="sample_search_term" href="#" id="High blood pressure">High blood pressure</a><br/></li>
+            </ul>
+	</div>
+	<div id="medline">
+   	   <h3>Welcome! You can search for medical abstracts of your choice below </h3>
+    	   <form id="search_medline_form" title="Search MEDLINE">
+               <input id="medline_search_term" type="text" placeholder="Search term"/>
+           </form>
+	</div>
           <fieldset id="loading_message" style="display:none">
             <h1 class="unselectable">Loading ...</h1>
             <p class="unselectable">This may take a while, in
@@ -78,8 +100,6 @@
               Please wait.
             </p>
           </fieldset>
-        </div>
-      </div>
     </div>
     <div class="center_wrapper" id="no_js_wrapper">
       <div>
@@ -110,10 +130,8 @@
     <div id="commentpopup"/>
     <div id="header" class="ui-widget">
       <div id="mainHeader" class="ui-widget-header">
-        <div id="aboutus">About us</div>
-        <div id="document_name">
-          <input readonly="readonly" class="ui-widget-header"/>
-        </div>
+        <div id="contactus">Contact Us</div>
+        <div id="brat_ack_button">Acknowledgements</div>
       </div>
       <div id="pulldown_buttons">
         <input id="auth_button" type="button" value="Login"/>
@@ -125,22 +143,6 @@
       <div id="document_mtime" class="document_edit_time unselectable">&nbsp;</div>
       <a id="home_link" href="/">Home</a>
       <input id="submit_button" type="button" value="Submit and Close"/>
-    </div>
-    <div id="footer">
-	<div id="contactus">Contact us</div>
-	<div id="brat_ack_button">Acknowledgements</div>
-    </div>
-    <div id="medline">
-    <h3>Welcome! You can search for medical abstracts of your choice below or view medical abstracts in the below categories</h3>
-    <form id="search_medline_form" title="Search MEDLINE">
-        <input id="medline_search_term" type="text" placeholder="Search term"/>
-    </form>
-    <a class="sample_search_term" href="#" id="Cancer">Cancer</a>
-    <a class="sample_search_term" href="#" id="Chemotherapy outcome">Chemotherapy outcome</a>
-    <a class="sample_search_term" href="#" id="Autism">Autism</a>
-    <a class="sample_search_term" href="#" id="Cardiovascular">Cardiovascular</a>
-    <a class="sample_search_term" href="#" id="Obesity">Obesity</a>
-    <a class="sample_search_term" href="#" id="High blood pressure">High blood pressure</a>
     </div>
     <div id="svg"></div>
     <form id="import_form" class="dialog" title="Import">
@@ -800,7 +802,6 @@
     <!-- About dialog -->
     <div id="about" class="dialog unselectable" title="About us">
     <p>We are collecting “annotations”, or “mark up”, on articles describing the conduct and results of clinical trials ultimately to make finding relevant evidence easier. In particular, healthcare providers often want to know what treatment is likely to work best for their patient, according to the available evidence. But this is surprisingly hard to find! This is in part because results of clinical trials are published as articles meant for consumption by other humans, not machines.</p>
-    <img id="about_img" height="400" width="500" src="static/img/citizen-sci2.png"/>
     <p>The idea behind this project is to help machines by marking up the important bits of articles in a computer-friendly way, in turn enabling smarter search. For example, telling the computer that an article reports a trial in which a particular treatment (perhaps aspirin) was studied is helpful, because if someone is then specifically looking for evidence about aspirin as a treatment this article can immediately be retrieved. It is not always obvious from the article text alone that this is the case, even if the article contains the word “aspirin”. 
 </p>
     <p>To collect such mark-up, we are recruiting citizen scientists like yourself mark articles with respect to clinically important information. The big idea is depicted in the figure above. Articles with your annotations attached will be stored in a database, which can then be used to improve search. Furthermore, these annotations are used to train “machine learning” systems, which learn to perform the mark-up automatically! Using this approach, we can automatically mark-up the articles that citizen scientists have not yet got to and deposit these into the database as well. The automated mark-up will probably not be as reliable as when real people do it, but it will likely still be good enough to improve search. </p>

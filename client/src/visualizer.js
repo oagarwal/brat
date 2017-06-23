@@ -3066,6 +3066,7 @@ Util.profileReport();
 	$('#results').remove();
 	$('#medline').remove();
         $('#submit_button').show();
+        $('#home_link').hide();
         Util.profileStart('invoke getDocument');
         dispatcher.post('ajax', [{
             action: 'getDocument',
