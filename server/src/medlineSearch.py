@@ -3,6 +3,7 @@ from sys import stderr
 from os import rename,listdir
 from os.path import isdir
 from config import DATA_DIR
+import time
 
 def search_articles(query,username):
 	username = username.strip()
@@ -80,9 +81,10 @@ def save_article(pmid,abstract,username):
 
 def clear_articles(username):
         username = username.strip()
+        current_time = str(round(time.time()))
 	for file_name in get_all_files(DATA_DIR+'/'+username):
 		if file_name[-4:] != "conf" and file_name!= "search_terms.txt":
-			rename(DATA_DIR+'/'+username+'/'+file_name,DATA_DIR+'/'+username+'/old/'+file_name)
+			rename(DATA_DIR+'/'+username+'/'+file_name,DATA_DIR+'/'+username+'/old/'+current_time+'_'+file_name)
 	return {}
 
 def get_all_files(input_dir):
