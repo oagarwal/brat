@@ -2113,6 +2113,7 @@ var VisualizerUI = (function($, window, undefined) {
           },
           { keep: true }
         ]);
+	$('#navbuttons').hide();
         dispatcher.post('ajax', [{ action: 'loadConf' }, function(response) {
           if (response.config != undefined) {
             // TODO: check for exceptions

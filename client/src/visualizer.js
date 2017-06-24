@@ -3067,6 +3067,9 @@ Util.profileReport();
 	$('#medline').remove();
         $('#submit_button').show();
         $('#home_link').hide();
+	if(coll=='/medline/'){
+		$('#navbuttons').show();
+	}		
         Util.profileStart('invoke getDocument');
         dispatcher.post('ajax', [{
             action: 'getDocument',
