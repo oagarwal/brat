@@ -2041,6 +2041,7 @@ var VisualizerUI = (function($, window, undefined) {
         	}
 		else{
 			for(i=0;i<response.names.length;i++){
+				response.names[i] = response.names[i].replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g,"&apos;").replace(/"/g,"&quot;");
 				text += "<br/><br/>"+(i+1)+". <a class=\"medlineabstract\" rev=\""+response.rct[i]+"\" href=\"#\" id=\""+response.pmids[i]+"\">"+response.names[i]+"</a>";
 				if(response.rct[i]){
 				    text += "<a target=\"_blank\" href=\"#/"+user+"/"+response.pmids[i]+"\" style=\"margin-left:10px;\"><button type=\"button\">Annotate</button></a>";
@@ -2059,7 +2060,7 @@ var VisualizerUI = (function($, window, undefined) {
             		'document': this.id,
 		},
 		function(response) {
-			response.text = response.text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g,"&apos;").replace(/"/g,"&quot;");
+			response.text = response.text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g,"&apos;").replace(/"/g,"&quot;").replace(/\n/g,"<br/>");
 			$("#dialog-message").remove();
 			text = "<div id=\"dialog-message\">";
 			//Hack for button

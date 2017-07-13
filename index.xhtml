@@ -4,7 +4,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>brat</title>
+    <title>MD-EvidenceSearch</title>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
     <meta name="google" value="notranslate"/>
     <link href="static/jquery-theme/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -62,7 +62,7 @@
     <div class="center_wrapper" id="no_svg_wrapper">
           <div id="no_document_message">
             <div class="unselectable" id="homepage_no_auth_msg">
-	      <h2 align="middle">Welcome to the brat annotation tool</h2>
+	      <h2 align="middle">Welcome to the MD-EvidenceSearch Project</h2>
                   <p>We are collecting “annotations”, or “mark up”, on articles describing the conduct and results of clinical trials ultimately to make finding relevant evidence easier. In particular, healthcare providers often want to know what treatment is likely to work best for their patient, according to the available evidence. But this is surprisingly hard to find! This is in part because results of clinical trials are published as articles meant for consumption by other humans, not machines.</p>
 
 		    <p>The idea behind this project is to help machines by marking up the important bits of articles in a computer-friendly way, in turn enabling smarter search. For example, telling the computer that an article reports a trial in which a particular treatment (perhaps aspirin) was studied is helpful, because if someone is then specifically looking for evidence about aspirin as a treatment this article can immediately be retrieved. It is not always obvious from the article text alone that this is the case, even if the article contains the word “aspirin”.
@@ -77,19 +77,30 @@
 	   </div>
           </div>
         <div id="explore_abstracts">
-            <br/><h4 align="middle">Explore articles below</h4><br/>
+            <br/><h4 align="middle">MD-EvidenceSearch</h4><br/>
 	    <a target="_blank" href="#/medline/000info" id="task_link">Click here to annotate some sample abstracts</a><br/>
-	    <ul>
-         	<li><a class="sample_search_term" href="#" id="Cancer">Cancer</a><br/></li>
-          	<li><a class="sample_search_term" href="#" id="Chemotherapy outcome">Chemotherapy outcome</a><br/></li>
-          	<li><a class="sample_search_term" href="#" id="Autism">Autism</a><br/></li>
-          	<li><a class="sample_search_term" href="#" id="Cardiovascular">Cardiovascular</a><br/></li>
-          	<li><a class="sample_search_term" href="#" id="Obesity">Obesity</a><br/></li>
-          	<li><a class="sample_search_term" href="#" id="High blood pressure">High blood pressure</a><br/></li>
-            </ul>
+		<p>In 2014, there were 2,626,418 deaths in the United States. Following are the leading causes along with the number of deaths - 
+		<ul>
+		<li><a class="sample_search_term" href="#" id="Heart Disease">Heart Disease</a> - 614,348<br/></li>
+		<li><a class="sample_search_term" href="#" id="Cancer">Cancer</a> - 591,700<br/></li>
+		<li><a class="sample_search_term" href="#" id="Chronic lower respiratory diseases">Chronic lower respiratory diseases</a> - 147,101<br/></li>
+		<li><a class="sample_search_term" href="#" id="Accidents">Accidents</a> - 135,928 <br/></li>
+		<li><a class="sample_search_term" href="#" id="Stroke">Stroke</a> - 133,103<br/></li>
+		<li><a class="sample_search_term" href="#" id="Alzheimer’s disease">Alzheimer’s disease</a> - 93,541<br/></li>
+		<li><a class="sample_search_term" href="#" id="Diabetes">Diabetes</a> - 76,488<br/></li>
+		<li><a class="sample_search_term" href="#" id="Influenza and Pneumonia">Influenza and Pneumonia</a> - 55,227 <br/></li>
+		<li><a class="sample_search_term" href="#" id="Kidney disease">Kidney disease</a> - 48,146<br/></li>
+		<li><a class="sample_search_term" href="#" id="Suicide">Suicide</a> - 42,826<br/></li>
+		<li><a class="sample_search_term" href="#" id="Septicemia">Septicemia</a> - 38,940<br/></li>
+		<li><a class="sample_search_term" href="#" id="Liver disease">Liver disease</a> - 38,170 <br/></li>
+		<li><a class="sample_search_term" href="#" id="Hypertension">Hypertension</a> - 30,221<br/></li>	
+		<li><a class="sample_search_term" href="#" id="Parkinson's disease">Parkinson's disease</a> - 26,150<br/></li>
+		<li><a class="sample_search_term" href="#" id="Pneumonitis">Pneumonitis</a> - 18,792<br/></li>
+		</ul>
+		Source: <a href="https://www.cdc.gov/nchs/data/nvsr/nvsr65/nvsr65_04.pdf" target="_blank">Deaths: Final Data for 2014</a></p>
 	</div>
 	<div id="medline">
-   	   <h3>Welcome! You can search for medical abstracts of your choice below </h3>
+   	   <h3>Welcome to MD-EvidenceSearch!<br/><br/> You can search for medical abstracts below, or explore topics on the left, or even just go ahead and annotate a few articles directly</h3>
     	   <form id="search_medline_form" title="Search MEDLINE">
                <input id="medline_search_term" type="text" placeholder="Search term"/>
            </form>
@@ -110,11 +121,10 @@
             <p class="unselectable">Your browser has JavaScript
               disabled, or does not support it.</p>
             <p class="unselectable">
-              <span class="logo">brat</span>
+              <span class="logo">MD-EvidenceSearch</span>
               needs JavaScript in order to run.
             </p>
-            <p class="unselectable">Please enable JavaScript or try
-              a <a href="http://brat.nlplab.org/supported-browsers.html">supported browser</a>
+            <p class="unselectable">Please enable JavaScript 
             </p>
           </fieldset>
         </div>
@@ -800,7 +810,7 @@
     </div>
     <!-- Contact dialog -->
     <div id="contact" class="dialog unselectable" title="Contact information">
-      <div align="center"><br/>Thanks for using our tool.<br/>You can send us feedback at abc@gmail.com </div>
+      <div align="center"><br/>Thanks for using MD-EvidenceSearch.<br/>You can send us feedback at mdevidencesearch@gmail.com </div>
     </div>
     <div id="help" class="dialog unselectable" title="Annotation tutorial">
 	<p>When logged in, it is possible to add annotations for a text span simply by selecting that span with the mouse, either by "dragging" over the text or by double-clicking on a word.</p>
@@ -818,7 +828,8 @@
     <p>To collect such mark-up, we are recruiting citizen scientists like yourself mark articles with respect to clinically important information. The big idea is depicted in the figure above. Articles with your annotations attached will be stored in a database, which can then be used to improve search. Furthermore, these annotations are used to train “machine learning” systems, which learn to perform the mark-up automatically! Using this approach, we can automatically mark-up the articles that citizen scientists have not yet got to and deposit these into the database as well. The automated mark-up will probably not be as reliable as when real people do it, but it will likely still be good enough to improve search. </p>
     </div>
     <div id="brat_ack" class="dialog unselectable" title="Acknowledgements">
-	<br/>We would like to thank the developers of the brat annotation tool. To know more about it, please go to <a href="http://brat.nlplab.org/about.html" target="_blank">http://brat.nlplab.org/about.html</a>
+	<br/>This project is funded by NIH under project id <a href="https://projectreporter.nih.gov/project_description.cfm?projectnumber=1UH2CA203711-01" target="_blank">1UH2CA203711-01</a>
+	<br/><br/>We would like to thank the developers of the brat annotation tool. To know more about it, please go to <a href="http://brat.nlplab.org/about.html" target="_blank">http://brat.nlplab.org/about.html</a>
    </div>
   </body>
 </html>

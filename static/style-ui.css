@@ -605,6 +605,14 @@ div.scroll_wrapper_upper div.scroller {
     text-decoration: none;
     font-size: 15px;
 }
+#explore_abstracts p{
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+#explore_abstracts a:hover{
+    text-decoration: underline;
+}
 #dialog-message {
     line-height: 1.2;
     margin-top: 10px;

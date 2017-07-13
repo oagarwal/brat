@@ -3,10 +3,12 @@ from sys import stderr
 from os import rename,listdir
 from os.path import isdir
 from config import DATA_DIR
+from unicodedata import normalize
 import time
 
 def search_articles(query,username):
 	username = username.strip()
+	query = query.encode('utf-8')
 	Entrez.email = 'oagarwal@seas.upenn.edu'
 	with open(DATA_DIR+'/'+username+'/search_terms.txt','a+') as f:
 		f.write(query+'\n');
@@ -47,7 +49,7 @@ def fetch_details(id_list,username):
 
 		if 'Article' in result['MedlineCitation']:
 			if 'ArticleTitle' in result['MedlineCitation']['Article']:
-				article_names.append(result['MedlineCitation']['Article']['ArticleTitle'])
+				article_names.append(result['MedlineCitation']['Article']['ArticleTitle'].replace(u'\xa0',u' '))
 			else:
 				article_names.append(None)
 			if 'PublicationTypeList' in result['MedlineCitation']['Article']:
@@ -61,10 +63,10 @@ def fetch_details(id_list,username):
 			article_years.append(None)
 		
 		if 'Article' in result['MedlineCitation'] and 'Abstract' in result['MedlineCitation']['Article'] and 'AbstractText' in result['MedlineCitation']['Article']['Abstract']:	
-			save_article(str(result['MedlineCitation']['PMID']),result['MedlineCitation']['Article']['Abstract']['AbstractText'],username)
+			save_article(str(result['MedlineCitation']['PMID']),result['MedlineCitation']['Article']['ArticleTitle'],result['MedlineCitation']['Article']['Abstract']['AbstractText'],username)
 		else:
-			save_article(str(result['MedlineCitation']['PMID']),'Abstract Unavailable',username)
-
+			save_article(str(result['MedlineCitation']['PMID']),result['MedlineCitation']['Article']['ArticleTitle'],'Abstract Unavailable',username)
+	
 	results = {}
 	results['names'] = article_names
 	results['pmids'] = article_ids
@@ -73,9 +75,10 @@ def fetch_details(id_list,username):
 	results['mesh'] = articles_mesh
 	return results
 
-def save_article(pmid,abstract,username):
+def save_article(pmid,title,abstract,username):
 	abstract = '\n'.join(abstract)
 	f = open(DATA_DIR+'/'+username+'/'+pmid+".txt",'w')
+	f.write("TITLE:"+title.encode('utf-8')+"\n\n")
 	f.write(abstract.encode('utf-8'))
 	f.close()
 
