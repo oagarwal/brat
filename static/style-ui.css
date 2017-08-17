@@ -633,6 +633,14 @@ div.scroll_wrapper_upper div.scroller {
 #about, #contact, #brat_ack {
     text-align: justify;
 }
+.highlight {
+    color: #FF6347;
+}
+.quote {
+    margin: 10px 50px 10px 50px;
+    color: #444444;
+    font-style: italic;
+}
 @font-face {
   font-family: 'Astloch';
   font-style: normal;

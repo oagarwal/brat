@@ -813,12 +813,42 @@
       <div align="center"><br/>Thanks for using MD-EvidenceSearch.<br/>You can send us feedback at mdevidencesearch@gmail.com </div>
     </div>
     <div id="help" class="dialog unselectable" title="Annotation tutorial">
-	<p>When logged in, it is possible to add annotations for a text span simply by selecting that span with the mouse, either by "dragging" over the text or by double-clicking on a word.</p>
-	<img id="help1" height="200" width="500" src="static/img/annotated_article.png"/>
-	<p>After selecting a span, the system shows the annotation dialog. This allows the selection of the type to assign to the newly created annotation.</p>
-	<img id="help2" height="300" width="500" src="static/img/span-dialog.png"/>
-	<p>Existing annotations can be modified or deleted from the same annotation dialog, which can be brought up by double-clicking on an annotation.</p>
-	<img id="help3" height="300" width="500" src="static/img/edit-span.png"/>
+	<h1>Help doctors search the medical literature</h1>
+	<p>Often, doctors personalize treatment depending on the characteristics of the patient. Searching the medical literature for personalized information is difficult. We are building interfaces to make their search more efficient. Here we mark descriptions of participants in medical studies, as described in the abstracts of medical articles.</p>
+	<h2>Annotation Instructions</h2>
+	<p>The task is to find in a short text all phrases and sentences that describe the participants in a medical study. Most text will be abstracts of medical articles. The descriptions of participants can include details about how and where the participants were recruited in the medical study and what characteristics or requirements they needed to meet to be included in the study. Specific common population descriptors include: gender, how many people were in the study, medical diagnoses or conditions they may have, location where they were treated as well as many other details relevant to a particular study. Descriptions of what was done in the study or the findings of the study should not be marked, even when they describe subgroups of participants.</p>
+	<p>Read the text and highlight all phrases that describe the people who participated in the study. Mark the longest contiguous text that includes such a description.</p>
+	<p>It may be helpful to read the entire text once and only after that mark the text snippets describing the people in the study.</p>
+	<img id="figure1" height="200" width="500" src="static/img/patients_figure_1.png"/>
+	<p>To mark a portion of the text, highlight the text. A menu will appear. At the top, in the "Text" field you will see the selected text. The "Information type" section has the "Participants" tag selected by default. At the bottom, there is a "Notes" section where you can leave comments about this particular mark-up. Select "OK" at the bottom right to finalize the mark-up.</p>
+	<p>If you wish to delete a mark-up section, double click on the existing label, then select "Delete" at the bottom right.</p>
+	<p>The easiest cases to mark is in sentences that directly describe what people were selected to participate in a medical study. Below are some examples. The highlighted text snippets show the descriptions of the participants. Sometimes the descriptions can be just a phrase other times it can cover the entire sentence:</p>
+	<p class="quote"><span class="highlight">Participants with mild-to-moderate AD (Mini-Mental State Examination score of 13-26) were recruited from December 1999 to November 2000 using clinic populations, referrals from community physicians, and local advertising.</span></p>
+	<p class="quote"><span class="highlight">A total of 270 patients with MCI</span> were enrolled in a 24-week, multicenter, randomized, double-blind, placebo-controlled study.</p>
+	<p class="quote"><span class="highlight">Of 474 participants screened, 351 were enrolled.</span></p>
+	<p>Some texts contain headings such as "SETTING", "PARTICIPANTS" and "RESULTS". Still read the text: some sentences in the "SETTING" or "PARTICIPANTS" text may not directly describe the participants and sometimes "RESULTS" texts contain participants descriptions.</p>
+	<p class="quote">RESULTS: <span class="highlight">Seventy institutionalized subjects with AD (mean age 84) completed the study.</span></p>
+	<p><strong>Special cases of what to mark:</strong></p>
+	<p>Text in the titles <strong>should</strong> be marked.</p>
+	<p>Expressions that provide some information about the participants but not directly describing them should be marked. These include demographics information, for example, if an article reports that the study was conducted in "Finnish hospitals", this should be marked; in the following example, the sentence was used to elicit that the participants are from Taiwan:</p>
+	<p class="quote">However, the laboratory data in these studies were not obtained among <span class="highlight">Taiwan population.</span></p>
+	<p>Some sentences mention the type of participants in a study indirectly, for example while describing the goal of their study in sentences of the form "We wanted to see if treatment X will help a given group of patients." These descriptions should also be annotated.</p>
+	<p class="quote">OBJECTIVE: To determine whether treatment with a selective cyclooxygenase (COX) -2 inhibitor (rofecoxib) or a traditional nonselective NSAID (naproxen) slows cognitive decline in <span class="highlight">patients with mild-to-moderate AD.</span></p>
+	<p>Similarly sentences describing the result of the study can mention the type of people who participated in the study. Mark these descriptions. For example</p>
+	<p class="quote">The results of this study indicate that rofecoxib or low-dose naproxen does not slow cognitive decline in <span class="highlight">patients with mild-to-moderate AD.</span></p>
+	<p>Some sentences describe behaviors or characteristics of the participants in the study, without mentioning the participants explicitly. If you understand from the context that these describe the participants, mark them. For example in the sentence below one can infer that is was allowed that the participants in the study use the listed medication, even though the word participant is not directly mentioned.</p>
+	<p class="quote"><span class="highlight">Stable use of cholinesterase inhibitors, estrogen, low-dose aspirin, and vitamin E was allowed.</span></p>
+	<p>Other sentences may describe who was excluded from the study, which allows one to indirectly infer information about the participants, either of whom will have the property which led to others being excluded.</p>
+	<p class="quote"><span class="highlight">Participants with inflammatory diseases that might respond to the study medications were excluded.</span></p>
+	<p><strong>Special cases of what NOT to mark:</strong></p>
+	<p>Some sentences describe not what characteristics of the participants had but rather what they were asked to do in the study or when describing the results of the study. Do not mark these.</p>
+	<p  class="quote">The 1-year mean (SD) change in ADAS-Cog scores in participants treated with naproxen (5.8 [8.0]) or rofecoxib (7.6 [7.7]) was not significantly different from the change in participants treated with placebo (5.7 [8.2]).</p>
+	<p>A complete annotated article should look like Figure 2.</p>
+	<img id="figure2" height="200" width="500" src="static/img/patients_figure_2.png"/>
+	<h2>Navigation Instructions</h2>
+	<p> Use the left and right arrows at the top bar to navigate through the articles.</p>
+	<p>You can return any time even after logging out to continue annotating</p>
+	<p>In the annotation page you can always view these instructions again by clicking on the "help" button at the upper right corner of the navigation bar.</p>
     </div>
     <!-- About dialog -->
     <div id="about" class="dialog unselectable" title="About us">
