@@ -16,6 +16,7 @@ from os import mkdir,listdir
 import mysql.connector
 from sys import stderr
 from config import DATA_DIR
+from shutil import copyfile 
 
 try:
     from os.path import relpath
@@ -178,6 +179,8 @@ def signup(user, password, category, education):
     f = open(DATA_DIR+'/'+user+'/annotation.conf','w')
     f.write("[entities]\n\nPatient\nIntervention\nOutcome\n\n[relations]\n[events]\n[attributes]\n")
     f.close()
+    for doc in listdir(DATA_DIR+'/medline'):
+         copyfile(DATA_DIR+'/medline/'+doc,DATA_DIR+'/'+user+'/medline/'+doc)
     Messager.info('Signed up! Hello!')
     return {}
 
@@ -192,8 +195,11 @@ def init_user_folders():
           if val not in all_folders:
                 mkdir( DATA_DIR+'/'+val, 0755 );
                 mkdir( DATA_DIR+'/'+val+'/old', 0755 );
+                mkdir( DATA_DIR+'/'+val+'/medline', 0755 );
                 f = open(DATA_DIR+'/'+val+'/annotation.conf','w')
                 f.write("[entities]\n\nPatient\nIntervention\nOutcome\n\n[relations]\n[events]\n[attributes]\n")
                 f.close()
-         
+                for doc in listdir(DATA_DIR+'/medline'):
+                        copyfile(DATA_DIR+'/medline/'+doc,DATA_DIR+'/'+val+'/medline/'+doc)
+
 # TODO: Unittesting

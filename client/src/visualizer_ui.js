@@ -1966,6 +1966,7 @@ var VisualizerUI = (function($, window, undefined) {
 		$('#explore_abstracts').show();
 		$('#signup_button').hide();
 		$('#home_link').show();
+		$('#task_link').attr('href','#/'+user+'/medline/000info');
               }
           }]);
         return false;
@@ -2104,6 +2105,7 @@ var VisualizerUI = (function($, window, undefined) {
               $('#no_document_message').hide();
 	      $('#signup_button').hide();
 	      $('#explore_abstracts').show();
+              $('#task_link').attr('href','#/'+user+'/medline/000info');
             } else {
               user = null;
               auth_button.val('Login');
